@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Gallery Hero */
+        .gallery-hero {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            background-color: #000;
+            min-height: 100vh;
+            width: 100%;
+            margin: 0;
+            padding: 90px 0 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-hero .hero-content {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            z-index: 2;
+            margin: 0 auto;
+        }
+        
+        .gallery-hero .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .gallery-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 2rem 0;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Filter Container */
+        .filter-container {
+            margin: 20px 0 30px;
+        }
+        
+        /* Desktop Filter Buttons */
+        .filter-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #FFD700;
+            color: #FFD700;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #FFD700;
+            color: #000;
+        }
+        
+        /* Mobile Filter Dropdown */
+        .filter-select {
+            display: none;
+            margin-bottom: 20px;
+        }
+        
+        .mobile-filter {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #FFD700;
+            background: transparent;
+            color: #FFD700;
+            border-radius: 4px;
+            font-family: 'Playfair Display', serif;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFD700%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat, repeat;
+            background-position: right 0.7em top 50%, 0 0;
+            background-size: 0.65em auto, 100%;
+        }
+        
+        .mobile-filter option {
+            background: #000;
+            color: #fff;
+            padding: 10px;
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 1rem;
+            max-width: 100%;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        @media (min-width: 768px) {
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: auto;
+                gap: 15px;
+                padding: 20px;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            
+            .gallery-item {
+                aspect-ratio: 1 / 1; /* Hace que todos los elementos sean cuadrados */
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+                border-radius: 0;
+                transition: transform 0.3s ease;
+                background: #f8f8f8;
+                border: 1px solid #eee;
+            }
+            
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            .gallery-item.visible {
+                opacity: 1;
+            }
+            
+            /* Efecto hover mejorado */
+            .gallery-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            }
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+            .gallery-item:hover img {
+                transform: scale(1.05);
+            }
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            backface-visibility: hidden;
+        }
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        .lightbox-caption {
+            color: #fff;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        /* =================================
+           MOBILE STYLES (max-width: 768px)
+           ================================= */
+        /* Reset para móvil */
+        * {
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            width: 100% !important;
+            max-width: 100% !important;
+            position: relative;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        /* Forzar vista móvil */
+        @media screen and (min-width: 1px) {
+            /* 1. Hero Adjustments */
+            .gallery-hero {
+                min-height: calc(100vh - 70px) !important; /* Ajuste para el header */
+                height: auto;
+                margin: 0 !important;
+                padding: 70px 0 0 0 !important; /* Espacio para el header */
+                width: 100% !important;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .gallery-hero .hero-content {
+                padding: 2rem 1.5rem;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                max-width: 100%;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+                margin: 0 0 1rem 0 !important;
+                padding: 0 1rem;
+                width: 100%;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem !important;
+                padding: 0 1rem;
+                margin: 0 0 1.5rem 0 !important;
+                line-height: 1.5;
+                max-width: 600px;
+            }
+            
+            /* 2. Filter Styles */
+            .filter-nav {
+                display: none; /* Ocultamos los botones en móvil */
+            }
+            
+            .filter-container {
+                position: relative;
+                width: 100%;
+                margin: 0 0 2rem 0;
+            }
+            
+            .filter-select {
+                display: block !important;
+                width: 100%;
+                margin: 0 0 1.5rem 0;
+            }
+            
+            .mobile-filter {
+                display: block !important;
+                width: 100%;
+                padding: 14px 20px;
+                border: 1px solid #FFD700;
+                background: rgba(0, 0, 0, 0.9);
+                color: #FFD700;
+                border-radius: 6px;
+                font-family: 'Playfair Display', serif;
+                font-size: 1rem;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFD700%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+                background-repeat: no-repeat;
+                background-position: right 15px center;
+                background-size: 12px auto;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .mobile-filter:focus {
+                outline: none;
+                box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+            }
+            
+            /* 3. Gallery Grid Adjustments */
+            .gallery-section {
+                padding: 2rem 0 !important;
+                overflow: hidden;
+            }
+            
+            .gallery-title {
+                font-size: 1.8rem !important;
+                text-align: center;
+                margin: 0 0 1.5rem 0 !important;
+                padding: 0 1rem;
+                color: #333;
+            }
+            
+            .gallery-grid {
+                display: flex !important;
+                flex-direction: column;
+                gap: 2rem !important;
+                padding: 0 1rem !important;
+                margin: 0 auto;
+                max-width: 600px;
+            }
+            
+            .gallery-item {
+                margin: 0 0 1rem 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            .gallery-item:active {
+                transform: scale(0.98);
+            }
+            
+            .gallery-item img {
+                width: 100% !important;
+                height: auto !important;
+                display: block;
+                transition: transform 0.5s ease;
+            }
+            
+            .gallery-item:hover img {
+                transform: scale(1.03);
+            }
+            
+            .gallery-item .overlay {
+                padding: 1.5rem;
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                transform: translateY(0);
+                transition: all 0.3s ease;
+            }
+            
+            .gallery-item h4 {
+                margin: 0 0 0.5rem 0;
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+            
+            .gallery-item p {
+                margin: 0;
+                font-size: 0.9rem;
+                opacity: 0.9;
+            }
+            
+            /* Lightbox Adjustments */
+            .lightbox {
+                background: rgba(0, 0, 0, 0.95);
+            }
+            
+            .lightbox-content {
+                width: 95% !important;
+                max-width: 100% !important;
+                padding: 1rem !important;
+                margin: 0 auto !important;
+                position: relative;
+            }
+            
+            .lightbox img {
+                max-height: 60vh !important;
+                width: auto !important;
+                max-width: 100% !important;
+                margin: 0 auto !important;
+                display: block !important;
+                border-radius: 4px;
+            }
+            
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+                font-size: 28px;
+                color: #FFD700;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                opacity: 0.9;
+                transition: opacity 0.2s ease;
+            }
+            
+            .lightbox-close:hover {
+                opacity: 1;
+            }
+            
+            .lightbox-caption {
+                color: #fff;
+                text-align: center;
+                margin-top: 1rem;
+                padding: 0.5rem;
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+            
+            /* Container Adjustments */
+            .container {
+                padding: 0 1rem !important;
+                max-width: 100% !important;
+                margin: 0 auto;
+            }
+            
+            /* Hide section title since we have it in the hero */
+            .gallery-section h2 {
+                display: none;
+            }
+            
+            /* Adjust the "Maestría en Ternos" heading */
+            .gallery-section h3 {
+                text-align: center;
+                font-size: 1.5rem;
+                margin: 0 0 1.5rem 0;
+                padding: 0 1rem;
+                color: #333;
+                font-weight: 600;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-component"></div>
+    <main class="main-content">
+        <!-- Hero Galería -->
+        <section class="hero gallery-hero" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover; background-color: #000;">
+            <div class="hero-content">
+                <h1>Nuestro Trabajo
+                    <span class="highlight">Arte en Tela</span>
+                </h1>
+                <p class="hero-subtitle">Explora nuestra colección de trabajos realizados con excelencia</p>
+                <div class="cta-container">
+                    <a href="#gallery-section" class="btn-gold" id="gallery-cta">
+                        <i class="fas fa-images"></i> Ver Galería
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="gallery-title">Nuestros Trabajos</h2>
+
+               <!-- Filtro de Categorías y Galería -->
+               <section id="gallery-section" class="gallery-section">
+                   <div class="container">
+                       <h2>Explore Nuestros Trabajos</h2>
+                       <div class="filter-container">
+                           <div class="filter-nav" id="filterNav">
+                               <button class="filter-btn active" data-filter="all">Todos</button>
+                               <button class="filter-btn" data-filter="bespoke">Bespoke</button>
+                               <button class="filter-btn" data-filter="ejecutivo">Ejecutiva</button>
+                               <button class="filter-btn" data-filter="arreglos">Arreglos</button>
+                           </div>
+                           <div class="filter-select">
+                               <select id="mobileFilter" class="mobile-filter">
+                                   <option value="all">Todas las Categorías</option>
+                                   <option value="bespoke">Confección Bespoke</option>
+                                   <option value="ejecutivo">Sastrería Ejecutiva</option>
+                                   <option value="arreglos">Arreglos y Transformaciones</option>
+                               </select>
+                           </div>
+                       </div>
+
+                <!-- Grid de Portafolio -->
+                <h3>Maestría en Ternos y Vestidos Exclusivos</h3>
+                <div class="gallery-grid">
+                    <!-- Item 1 - Bespoke -->
+                    <div class="gallery-item" data-category="bespoke">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Terno a medida en lana fina">
+                        <div class="overlay">
+                            <h4>Terno en Lana Merino</h4>
+                            <p>Confección Bespoke | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 - Ejecutivo -->
+                    <div class="gallery-item" data-category="ejecutivo">
+                        <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Traje ejecutivo azul marino">
+                        <div class="overlay">
+                            <h4>Traje Ejecutivo Azul Marino</h4>
+                            <p>Sastrería Ejecutiva | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 - Arreglos -->
+                    <div class="gallery-item" data-category="arreglos">
+                        <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Transformación de vestido">
+                        <div class="overlay">
+                            <h4>Transformación de Vestido</h4>
+                            <p>Arreglo Especial | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 - Bespoke -->
+                    <div class="gallery-item" data-category="bespoke">
+                        <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Chaqueta de vestir personalizada">
+                        <div class="overlay">
+                            <h4>Chaqueta de Vestir Hecha a Medida</h4>
+                            <p>Confección Bespoke | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 - Ejecutivo -->
+                    <div class="gallery-item" data-category="ejecutivo">
+                        <img src="https://images.unsplash.com/photo-1552374196-1ab67295bcdb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Traje ejecutivo gris">
+                        <div class="overlay">
+                            <h4>Traje Ejecutivo Gris Carbón</h4>
+                            <p>Sastrería Ejecutiva | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 - Arreglos -->
+                    <div class="gallery-item" data-category="arreglos">
+                        <img src="https://images.unsplash.com/photo-1561526116-e246f3f460a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Ajuste de pantalón">
+                        <div class="overlay">
+                            <h4>Ajuste de Pantalón a Medida</h4>
+                            <p>Arreglo Rápido | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 7 - Bespoke -->
+                    <div class="gallery-item" data-category="bespoke">
+                        <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Traje de tres piezas">
+                        <div class="overlay">
+                            <h4>Traje de Tres Piezas Personalizado</h4>
+                            <p>Confección Bespoke | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 8 - Ejecutivo -->
+                    <div class="gallery-item" data-category="ejecutivo">
+                        <img src="https://images.unsplash.com/photo-1551232864-8d001e0eb9e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Traje ejecutivo negro">
+                        <div class="overlay">
+                            <h4>Traje Ejecutivo Negro Clásico</h4>
+                            <p>Sastrería Ejecutiva | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 9 - Arreglos -->
+                    <div class="gallery-item" data-category="arreglos">
+                        <img src="https://images.unsplash.com/photo-1556909114-44e2b9049ac4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Ajuste de chaqueta">
+                        <div class="overlay">
+                            <h4>Ajuste de Chaqueta a la Medida</h4>
+                            <p>Arreglo Especial | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 10 - Bespoke -->
+                    <div class="gallery-item" data-category="bespoke">
+                        <img src="https://images.unsplash.com/photo-1551232864-8d001e0eb9e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Smoking a medida">
+                        <div class="overlay">
+                            <h4>Smoking Hecho a Medida</h4>
+                            <p>Confección Bespoke | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 11 - Ejecutivo -->
+                    <div class="gallery-item" data-category="ejecutivo">
+                        <img src="https://images.unsplash.com/photo-1551232864-8d001e0eb9e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Traje ejecutivo azul noche">
+                        <div class="overlay">
+                            <h4>Traje Ejecutivo Azul Noche</h4>
+                            <p>Sastrería Ejecutiva | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 12 - Arreglos -->
+                    <div class="gallery-item" data-category="arreglos">
+                        <img src="https://images.unsplash.com/photo-1556909114-44e2b9049ac4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Ajuste de manga">
+                        <div class="overlay">
+                            <h4>Ajuste de Manga Perfecto</h4>
+                            <p>Arreglo Rápido | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 13 - Bespoke -->
+                    <div class="gallery-item" data-category="bespoke">
+                        <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Traje de etiqueta">
+                        <div class="overlay">
+                            <h4>Traje de Etiqueta Personalizado</h4>
+                            <p>Confección Bespoke | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 14 - Ejecutivo -->
+                    <div class="gallery-item" data-category="ejecutivo">
+                        <img src="https://images.unsplash.com/photo-1551232864-8d001e0eb9e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Traje ejecutivo gris marengo">
+                        <div class="overlay">
+                            <h4>Traje Ejecutivo Gris Marengo</h4>
+                            <p>Sastrería Ejecutiva | 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 15 - Arreglos -->
+                    <div class="gallery-item" data-category="arreglos">
+                        <img src="https://images.unsplash.com/photo-1556909114-44e2b9049ac4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Ajuste de cintura">
+                        <div class="overlay">
+                            <h4>Ajuste de Cintura Perfecto</h4>
+                            <p>Arreglo Especial | 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA de Conversión -->
+        <section class="gallery-cta">
+            <div class="container">
+                <h2>Su proyecto, nuestra próxima obra maestra</h2>
+                <p>Contáctenos para empezar a crear prendas que reflejen su estilo y personalidad únicos.</p>
+                <a href="contacto.html" class="btn-gold">Solicitar Consulta</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Container -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img src="" alt="" id="lightbox-image">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Footer Component -->
+    <div id="footer-component"></div>
+
+    <!-- Scripts -->
+    <script src="js/components.js"></script>
+    <script>
+        // Cargar componentes
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHeader();
+            loadFooter();
+            
+            // Elementos de la galería
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const mobileFilter = document.getElementById('mobileFilter');
+            const gallerySection = document.getElementById('gallery-section');
+            
+            // Función para manejar el desplazamiento suave
+            function smoothScrollTo(element, offset = 100) {
+                if (!element) return;
+                
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Función para actualizar la visualización de la galería
+            function updateGalleryDisplay() {
+                const isMobile = window.innerWidth <= 768;
+                const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'all';
+                
+                // 1. Ocultar todos los elementos primero
+                galleryItems.forEach(item => {
+                    item.style.display = 'none';
+                });
+                
+                // 2. Filtrar elementos visibles
+                let visibleItems = [];
+                galleryItems.forEach((item) => {
+                    const itemCategory = item.getAttribute('data-category');
+                    if (activeFilter === 'all' || itemCategory === activeFilter) {
+                        visibleItems.push(item);
+                    }
+                });
+                
+                // 3. Mostrar exactamente 15 elementos (5 filas x 3 columnas)
+                const itemsNeeded = 15;
+                let itemsToShow = [];
+                
+                // Si hay elementos visibles, llenar el grid
+                if (visibleItems.length > 0) {
+                    // Repetir los elementos hasta completar 15
+                    for (let i = 0; i < itemsNeeded; i++) {
+                        const item = visibleItems[i % visibleItems.length];
+                        itemsToShow.push(item);
+                    }
+                }
+                
+                // Mostrar los elementos
+                itemsToShow.forEach((item, index) => {
+                    if (item) {
+                        item.style.display = 'block';
+                        item.style.opacity = '1';
+                        item.style.order = index;
+                    }
+                });
+                
+                // 4. Actualizar controles de filtro
+                if (mobileFilter) {
+                    mobileFilter.value = activeFilter;
+                }
+                
+                // 5. Ajustar visibilidad de los controles según el dispositivo
+                const filterNav = document.querySelector('.filter-nav');
+                if (filterNav) {
+                    filterNav.style.display = isMobile ? 'none' : 'flex';
+                }
+                
+                if (mobileFilter) {
+                    mobileFilter.style.display = isMobile ? 'block' : 'none';
+                }
+                
+                // 6. Ajustar la altura del contenedor para 5 filas
+                const gridContainer = document.querySelector('.gallery-grid');
+                if (gridContainer) {
+                    const rowHeight = 200; // Altura de cada fila
+                    const gap = 20; // Espaciado entre elementos
+                    const rows = 5; // Siempre 5 filas
+                    const totalHeight = (rowHeight * rows) + (gap * (rows - 1));
+                    gridContainer.style.minHeight = `${totalHeight}px`;
+                }
+            }
+            
+            // Función para aplicar filtro
+            function filterItems(category) {
+                // Actualizar botones activos
+                filterButtons.forEach(btn => {
+                    const btnFilter = btn.getAttribute('data-filter');
+                    btn.classList.toggle('active', btnFilter === category);
+                });
+                
+                // Actualizar la visualización
+                updateGalleryDisplay();
+                
+                // Desplazamiento suave a la galería
+                if (gallerySection) {
+                    smoothScrollTo(gallerySection);
+                }
+                
+                // Actualizar la URL sin recargar la página
+                const newUrl = `${window.location.pathname}?filter=${category}`;
+                window.history.pushState({ path: newUrl }, '', newUrl);
+            }
+            
+            // Manejar clics en los botones de filtro
+            filterButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const filter = button.getAttribute('data-filter');
+                    filterItems(filter);
+                });
+            });
+            
+            // Manejar cambios en el selector móvil
+            if (mobileFilter) {
+                mobileFilter.addEventListener('change', (e) => {
+                    filterItems(e.target.value);
+                });
+            }
+            
+            // Manejar el botón de la galería en el hero
+            const galleryCta = document.getElementById('gallery-cta');
+            if (galleryCta) {
+                galleryCta.addEventListener('click', (e) => {
+                    if (gallerySection) {
+                        e.preventDefault();
+                        smoothScrollTo(gallerySection, 90); // 90px de margen para el header fijo
+                    }
+                });
+            }
+            
+            // Manejar redimensionamiento de la ventana
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(updateGalleryDisplay, 250);
+            });
+            
+            // Procesar parámetros de URL al cargar
+            const urlParams = new URLSearchParams(window.location.search);
+            const filterParam = urlParams.get('filter');
+            if (filterParam && ['all', 'bespoke', 'ejecutivo', 'arreglos'].includes(filterParam)) {
+                filterItems(filterParam);
+            } else {
+                // Inicializar con todos los elementos visibles
+                updateGalleryDisplay();
+            }
+            
+            // Lightbox
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-image');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const closeBtn = document.querySelector('.lightbox-close');
+            
+            // Abrir lightbox al hacer clic en una imagen
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('img');
+                    const title = item.querySelector('h4')?.textContent || '';
+                    const description = item.querySelector('p')?.textContent || '';
+                    
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt;
+                    lightboxCaption.textContent = `${title} - ${description}`;
+                    
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevenir scroll
+                });
+            });
+            
+            // Cerrar lightbox
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Restaurar scroll
+            }
+            
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            
+            // Cerrar con tecla ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

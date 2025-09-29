@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Variables de colores */
+        :root {
+            --gold: #B89B6A;
+            --silver: #C0C0C0;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+        }
+        
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Gallery Hero */
+        .gallery-hero {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            background-color: #000;
+            min-height: 100vh;
+            width: 100%;
+            margin: 0;
+            padding: 90px 0 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-hero .hero-content {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            z-index: 2;
+            margin: 0 auto;
+        }
+        
+        .gallery-hero .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .gallery-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 2rem 0;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Sección de Galería */
+        .gallery-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .portfolio-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            color: var(--dark);
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        /* Filtros - Estilo de Pestañas */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            margin: 0 auto 50px;
+            padding: 10px 0;
+            max-width: 100%;
+            overflow-x: auto;
+            scrollbar-width: none; /* Para Firefox */
+            -ms-overflow-style: none; /* Para IE y Edge */
+            background-color: var(--dark);
+            border-radius: 50px;
+            width: fit-content;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-tabs::-webkit-scrollbar {
+            display: none; /* Para Chrome, Safari y Opera */
+        }
+        
+        .filter-btn {
+            background: transparent;
+            border: 2px solid var(--silver);
+            color: var(--silver);
+            padding: 12px 30px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border-radius: 30px;
+            white-space: nowrap;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .filter-btn:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+        
+        .filter-btn.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(184, 155, 106, 0.3);
+        }
+        
+        /* Grid de Galería - 5 filas x 3 columnas */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 1fr;
+            gap: 30px;
+            padding: 0 20px;
+            margin: 0 auto;
+            max-width: 1400px;
+        }
+        
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: white;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .gallery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .gallery-card:hover .card-image::before {
+            opacity: 1;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+        }
+        
+        .gallery-card:hover .card-image img {
+            transform: scale(1.08);
+        }
+        
+        .card-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-category {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .card-category::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--gold);
+            border-radius: 50%;
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            margin: 8px 0 12px;
+            color: var(--dark);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .card-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                gap: 20px;
+            }
+            
+            .card-image {
+                height: 240px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .portfolio-title {
+                font-size: 1.6rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 25px;
+            }
+            
+            .portfolio-title {
+                font-size: 1.4rem;
+                margin-bottom: 30px;
+            }
+            
+            .filter-tabs {
+                justify-content: flex-start;
+                padding: 15px 20px;
+                border-radius: 0;
+                margin: 0 -20px 40px;
+                width: calc(100% + 40px);
+                background-color: #f8f9fa;
+                border-top: 1px solid #eee;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+                min-width: auto;
+                margin: 0 8px 0 0;
+                border-width: 1.5px;
+                background-color: white;
+            }
+            
+            .filter-btn.active {
+                transform: none;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                padding: 0 15px;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .card-image {
+                height: 300px;
+            }
+            
+            .card-content {
+                padding: 18px;
+            }
+            
+            .card-title {
+                font-size: 1.2rem;
+            }
+            
+            .card-description {
+                font-size: 0.9rem;
+            }
+            
+            .filter-tabs {
+                overflow-x: auto;
+                padding-bottom: 10px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                flex-wrap: nowrap;
+            }
+            
+            .filter-tabs::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .filter-btn {
+                white-space: nowrap;
+                margin: 0 5px;
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            
+            /* Ajustes adicionales para móviles pequeños */
+            @media (max-width: 480px) {
+                .section-title {
+                    font-size: 1.8rem;
+                }
+                
+                .portfolio-title {
+                    font-size: 1.3rem;
+                }
+                
+                .card-image {
+                    height: 260px;
+                }
+                
+                .card-content {
+                    padding: 15px;
+                }
+                
+                .card-title {
+                    font-size: 1.1rem;
+                }
+                
+                .card-description {
+                    font-size: 0.85rem;
+                }
+            }
+        }
+        
+        /* Clases de utilidad */
+        .text-center { text-align: center; }
+        .mt-4 { margin-top: 2rem; }
+        .mb-4 { margin-bottom: 2rem; }
+        .filter-container {
+            margin: 20px 0 30px;
+        }
+        
+        /* Desktop Filter Buttons */
+        .filter-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #FFD700;
+            color: #FFD700;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #FFD700;
+            color: #000;
+        }
+        
+        /* Mobile Filter Dropdown */
+        .filter-select {
+            display: none;
+            margin-bottom: 20px;
+        }
+        
+        .mobile-filter {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #FFD700;
+            background: transparent;
+            color: #FFD700;
+            border-radius: 4px;
+            font-family: 'Playfair Display', serif;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFD700%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat, repeat;
+            background-position: right 0.7em top 50%, 0 0;
+            background-size: 0.65em auto, 100%;
+        }
+        
+        .mobile-filter option {
+            background: #000;
+            color: #fff;
+            padding: 10px;
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 1rem;
+            max-width: 100%;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        @media (min-width: 768px) {
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: auto;
+                gap: 15px;
+                padding: 20px;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            
+            .gallery-item {
+                aspect-ratio: 1 / 1; /* Hace que todos los elementos sean cuadrados */
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+                border-radius: 0;
+                transition: transform 0.3s ease;
+                background: #f8f8f8;
+                border: 1px solid #eee;
+            }
+            
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            .gallery-item.visible {
+                opacity: 1;
+            }
+            
+            /* Efecto hover mejorado */
+            .gallery-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            }
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+            .gallery-item:hover img {
+                transform: scale(1.05);
+            }
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            backface-visibility: hidden;
+        }
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        .lightbox-caption {
+            color: #fff;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        /* =================================
+           MOBILE STYLES (max-width: 768px)
+           ================================= */
+        /* Reset para móvil */
+        * {
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            width: 100% !important;
+            max-width: 100% !important;
+            position: relative;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        /* Forzar vista móvil */
+        @media screen and (min-width: 1px) {
+            /* 1. Hero Adjustments */
+            .gallery-hero {
+                min-height: calc(100vh - 70px) !important; /* Ajuste para el header */
+                height: auto;
+                margin: 0 !important;
+                padding: 70px 0 0 0 !important; /* Espacio para el header */
+                width: 100% !important;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .gallery-hero .hero-content {
+                padding: 2rem 1.5rem;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                max-width: 100%;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+                margin: 0 0 1rem 0 !important;
+                padding: 0 1rem;
+                width: 100%;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem !important;
+                padding: 0 1rem;
+                margin: 0 0 1.5rem 0 !important;
+                line-height: 1.5;
+                max-width: 600px;
+            }
+            
+            /* 2. Filter Styles */
+            .filter-nav {
+                display: none; /* Ocultamos los botones en móvil */
+            }
+            
+            .filter-container {
+                position: relative;
+                width: 100%;
+                margin: 0 0 2rem 0;
+            }
+            
+            .filter-select {
+                display: block !important;
+                width: 100%;
+                margin: 0 0 1.5rem 0;
+            }
+            
+            .mobile-filter {
+                display: block !important;
+                width: 100%;
+                padding: 14px 20px;
+                border: 1px solid #FFD700;
+                background: rgba(0, 0, 0, 0.9);
+                color: #FFD700;
+                border-radius: 6px;
+                font-family: 'Playfair Display', serif;
+                font-size: 1rem;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFD700%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+                background-repeat: no-repeat;
+                background-position: right 15px center;
+                background-size: 12px auto;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .mobile-filter:focus {
+                outline: none;
+                box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+            }
+            
+            /* 3. Gallery Grid Adjustments */
+            .gallery-section {
+                padding: 2rem 0 !important;
+                overflow: hidden;
+            }
+            
+            .gallery-title {
+                font-size: 1.8rem !important;
+                text-align: center;
+                margin: 0 0 1.5rem 0 !important;
+                padding: 0 1rem;
+                color: #333;
+            }
+            
+            .gallery-grid {
+                display: flex !important;
+                flex-direction: column;
+                gap: 2rem !important;
+                padding: 0 1rem !important;
+                margin: 0 auto;
+                max-width: 600px;
+            }
+            
+            .gallery-item {
+                margin: 0 0 1rem 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            .gallery-item:active {
+                transform: scale(0.98);
+            }
+            
+            .gallery-item img {
+                width: 100% !important;
+                height: auto !important;
+                display: block;
+                transition: transform 0.5s ease;
+            }
+            
+            .gallery-item:hover img {
+                transform: scale(1.03);
+            }
+            
+            .gallery-item .overlay {
+                padding: 1.5rem;
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                transform: translateY(0);
+                transition: all 0.3s ease;
+            }
+            
+            .gallery-item h4 {
+                margin: 0 0 0.5rem 0;
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+            
+            .gallery-item p {
+                margin: 0;
+                font-size: 0.9rem;
+                opacity: 0.9;
+            }
+            
+            /* Lightbox Adjustments */
+            .lightbox {
+                background: rgba(0, 0, 0, 0.95);
+            }
+            
+            .lightbox-content {
+                width: 95% !important;
+                max-width: 100% !important;
+                padding: 1rem !important;
+                margin: 0 auto !important;
+                position: relative;
+            }
+            
+            .lightbox img {
+                max-height: 60vh !important;
+                width: auto !important;
+                max-width: 100% !important;
+                margin: 0 auto !important;
+                display: block !important;
+                border-radius: 4px;
+            }
+            
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+                font-size: 28px;
+                color: #FFD700;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                opacity: 0.9;
+                transition: opacity 0.2s ease;
+            }
+            
+            .lightbox-close:hover {
+                opacity: 1;
+            }
+            
+            .lightbox-caption {
+                color: #fff;
+                text-align: center;
+                margin-top: 1rem;
+                padding: 0.5rem;
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+            
+            /* Container Adjustments */
+            .container {
+                padding: 0 1rem !important;
+                max-width: 100% !important;
+                margin: 0 auto;
+            }
+            
+            /* Hide section title since we have it in the hero */
+            .gallery-section h2 {
+                display: none;
+            }
+            
+            /* Adjust the "Maestría en Ternos" heading */
+            .gallery-section h3 {
+                text-align: center;
+                font-size: 1.5rem;
+                margin: 0 0 1.5rem 0;
+                padding: 0 1rem;
+                color: #333;
+                font-weight: 600;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-component"></div>
+    <main class="main-content">
+        <!-- Hero Galería -->
+        <section class="hero gallery-hero" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/galeria/1.jpg') no-repeat center center/cover; background-color: #000;">
+            <div class="hero-content">
+                <h1>Nuestro Trabajo
+                    <span class="highlight">Arte en Tela</span>
+                </h1>
+                <p class="hero-subtitle">Explora nuestra colección de trabajos realizados con excelencia</p>
+                <div class="cta-container">
+                    <a href="#gallery-section" class="btn-gold" id="gallery-cta">
+                        <i class="fas fa-images"></i> Ver Galería
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nueva Sección de Galería -->
+        <section id="gallery-section" class="gallery-section">
+            <div class="container">
+                <h2 class="section-title">Explore Nuestras Creaciones por Categoría</h2>
+                
+                <!-- Filtros -->
+                <div class="filter-tabs" id="filterTabs">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="bespoke">Confección Bespoke</button>
+                    <button class="filter-btn" data-filter="ejecutivo">Sastrería Ejecutiva</button>
+                    <button class="filter-btn" data-filter="arreglos">Arreglos y Transformaciones</button>
+                </div>
+                
+                <h3 class="portfolio-title">Nuestro Portafolio de Obras Maestras</h3>
+                
+                <!-- Grid de Galería - 5 filas x 3 columnas -->
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Tarjeta 1 - Bespoke -->
+                    <div class="gallery-card" data-category="bespoke">
+                        <div class="card-image">
+                            <img src="images/galeria/1.jpg" alt="Terno a medida">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Bespoke</span>
+                            <h3 class="card-title">Terno de Lana Fina</h3>
+                            <p class="card-description">Confección artesanal personalizada con los más altos estándares de sastrería.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 2 - Ejecutivo -->
+                    <div class="gallery-card" data-category="ejecutivo">
+                        <div class="card-image">
+                            <img src="images/galeria/2.jpg" alt="Traje ejecutivo">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Ejecutivo</span>
+                            <h3 class="card-title">Traje Corporativo</h3>
+                            <p class="card-description">Elegancia y profesionalismo para tu imagen ejecutiva.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 3 - Arreglos -->
+                    <div class="gallery-card" data-category="arreglos">
+                        <div class="card-image">
+                            <img src="images/galeria/3.jpg" alt="Transformación de vestido">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Arreglos</span>
+                            <h3 class="card-title">Transformación de Vestido</h3>
+                            <p class="card-description">Dale una nueva vida a tus prendas favoritas con nuestros servicios de transformación.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 4 - Bespoke -->
+                    <div class="gallery-card" data-category="bespoke">
+                        <div class="card-image">
+                            <img src="images/galeria/4.jpg" alt="Chaleco a medida">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Bespoke</span>
+                            <h3 class="card-title">Chaleco Personalizado</h3>
+                            <p class="card-description">Detalles únicos en cada puntada para un estilo inigualable.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 5 - Ejecutivo -->
+                    <div class="gallery-card" data-category="ejecutivo">
+                        <div class="card-image">
+                            <img src="images/galeria/5.jpg" alt="Traje ejecutivo gris">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Ejecutivo</span>
+                            <h3 class="card-title">Traje Gris Carbón</h3>
+                            <p class="card-description">Elegancia y sofisticación en tonos neutros para el ejecutivo moderno.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 6 - Arreglos -->
+                    <div class="gallery-card" data-category="arreglos">
+                        <div class="card-image">
+                            <img src="images/galeria/6.jpg" alt="Ajuste de pantalón">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Arreglos</span>
+                            <h3 class="card-title">Ajuste de Pantalón</h3>
+                            <p class="card-description">Ajuste perfecto para un acabado impecable en tus pantalones favoritos.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 7 - Bespoke -->
+                    <div class="gallery-card" data-category="bespoke">
+                        <div class="card-image">
+                            <img src="images/galeria/7.jpg" alt="Traje de tres piezas">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Bespoke</span>
+                            <h3 class="card-title">Traje de Tres Piezas</h3>
+                            <p class="card-description">Elegancia y distinción en cada detalle de este conjunto personalizado.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 8 - Ejecutivo -->
+                    <div class="gallery-card" data-category="ejecutivo">
+                        <div class="card-image">
+                            <img src="images/galeria/8.jpg" alt="Traje ejecutivo negro">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Ejecutivo</span>
+                            <h3 class="card-title">Traje Negro Clásico</h3>
+                            <p class="card-description">Un clásico atemporal que nunca pasa de moda en el vestir ejecutivo.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 9 - Arreglos -->
+                    <div class="gallery-card" data-category="arreglos">
+                        <div class="card-image">
+                            <img src="images/galeria/9.jpg" alt="Ajuste de chaqueta">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Arreglos</span>
+                            <h3 class="card-title">Ajuste de Chaqueta</h3>
+                            <p class="card-description">Ajuste preciso para un mejor calce y comodidad en tus chaquetas.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 10 - Bespoke -->
+                    <div class="gallery-card" data-category="bespoke">
+                        <div class="card-image">
+                            <img src="images/galeria/10.jpg" alt="Smoking a medida">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Bespoke</span>
+                            <h3 class="card-title">Smoking Elegante</h3>
+                            <p class="card-description">Elegancia atemporal para ocasiones especiales y eventos de gala.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 11 - Ejecutivo -->
+                    <div class="gallery-card" data-category="ejecutivo">
+                        <div class="card-image">
+                            <img src="images/galeria/11.jpg" alt="Traje ejecutivo azul noche">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Ejecutivo</span>
+                            <h3 class="card-title">Traje Azul Noche</h3>
+                            <p class="card-description">Sofisticación en tonos oscuros para destacar en cualquier ocasión formal.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 12 - Arreglos -->
+                    <div class="gallery-card" data-category="arreglos">
+                        <div class="card-image">
+                            <img src="images/galeria/12.jpg" alt="Ajuste de manga">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Arreglos</span>
+                            <h3 class="card-title">Ajuste de Manga</h3>
+                            <p class="card-description">Longitud y ajuste perfectos para un acabado profesional en tus mangas.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 13 - Bespoke -->
+                    <div class="gallery-card" data-category="bespoke">
+                        <div class="card-image">
+                            <img src="images/galeria/13.jpg" alt="Traje de etiqueta">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Bespoke</span>
+                            <h3 class="card-title">Traje de Etiqueta</h3>
+                            <p class="card-description">Elegancia suprema para eventos formales con un toque personalizado único.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 14 - Ejecutivo -->
+                    <div class="gallery-card" data-category="ejecutivo">
+                        <div class="card-image">
+                            <img src="images/galeria/14.jpg" alt="Traje ejecutivo gris marengo">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Ejecutivo</span>
+                            <h3 class="card-title">Traje Gris Marengo</h3>
+                            <p class="card-description">Elegancia discreta con un toque de personalidad en tonos grises.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 15 - Arreglos -->
+                    <div class="gallery-card" data-category="arreglos">
+                        <div class="card-image">
+                            <img src="images/galeria/15.jpg" alt="Ajuste de cintura">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Arreglos</span>
+                            <h3 class="card-title">Ajuste de Cintura</h3>
+                            <p class="card-description">Ajuste perfecto para realzar tu figura con comodidad y estilo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA de Conversión -->
+        <section class="gallery-cta">
+            <div class="container">
+                <h2>Su proyecto, nuestra próxima obra maestra</h2>
+                <p>Contáctenos para empezar a crear prendas que reflejen su estilo y personalidad únicos.</p>
+                <a href="contacto.html" class="btn-gold">Solicitar Consulta</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Container -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img src="" alt="" id="lightbox-image">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Footer Component -->
+    <div id="footer-component"></div>
+
+    <!-- Scripts -->
+    <script src="js/components.js"></script>
+    <script>
+        // Cargar componentes
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHeader();
+            loadFooter();
+            
+            // Elementos de la galería
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryCards = document.querySelectorAll('.gallery-card');
+            const gallerySection = document.getElementById('gallery-section');
+            
+            // Función para manejar el desplazamiento suave
+            function smoothScrollTo(element, offset = 100) {
+                if (!element) return;
+                
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Función para actualizar la visualización de la galería
+            function updateGalleryDisplay() {
+                const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'all';
+                
+                // 1. Mostrar u ocultar tarjetas según el filtro
+                galleryCards.forEach(card => {
+                    const cardCategories = card.getAttribute('data-category').split(' ');
+                    
+                    if (activeFilter === 'all' || cardCategories.includes(activeFilter)) {
+                        card.style.display = 'flex';
+                        // Animación de entrada
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // 2. Actualizar la URL sin recargar la página
+                const newUrl = `${window.location.pathname}?filter=${activeFilter}`;
+                window.history.pushState({ path: newUrl }, '', newUrl);
+            }
+            
+            // Función para aplicar filtro
+            function filterItems(category) {
+                // Actualizar botones activos
+                filterButtons.forEach(btn => {
+                    const btnFilter = btn.getAttribute('data-filter');
+                    btn.classList.toggle('active', btnFilter === category);
+                });
+                
+                // Actualizar la visualización
+                updateGalleryDisplay();
+                
+                // Desplazamiento suave a la galería
+                if (gallerySection) {
+                    smoothScrollTo(gallerySection);
+                }
+            }
+            
+            // Manejar clics en los botones de filtro
+            filterButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const filter = button.getAttribute('data-filter');
+                    filterItems(filter);
+                });
+            });
+            
+            // Manejar el botón de la galería en el hero
+            const galleryCta = document.getElementById('gallery-cta');
+            if (galleryCta) {
+                galleryCta.addEventListener('click', (e) => {
+                    if (gallerySection) {
+                        e.preventDefault();
+                        smoothScrollTo(gallerySection, 90); // 90px de margen para el header fijo
+                    }
+                });
+            }
+            
+            // Manejar redimensionamiento de la ventana
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(updateGalleryDisplay, 250);
+            });
+            
+            // Procesar parámetros de URL al cargar
+            const urlParams = new URLSearchParams(window.location.search);
+            const filterParam = urlParams.get('filter');
+            if (filterParam && ['all', 'bespoke', 'ejecutivo', 'arreglos'].includes(filterParam)) {
+                filterItems(filterParam);
+            } else {
+                // Inicializar con todos los elementos visibles
+                updateGalleryDisplay();
+            }
+            
+            // Lightbox
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-image');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const closeBtn = document.querySelector('.lightbox-close');
+            
+            // Abrir lightbox al hacer clic en una tarjeta
+            galleryCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const img = card.querySelector('img');
+                    const title = card.querySelector('.card-title')?.textContent || '';
+                    const description = card.querySelector('.card-description')?.textContent || '';
+                    
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt;
+                    lightboxCaption.textContent = `${title} - ${description}`;
+                    
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevenir scroll
+                });
+            });
+            
+            // Cerrar lightbox
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Restaurar scroll
+            }
+            
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            
+            // Cerrar con tecla ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

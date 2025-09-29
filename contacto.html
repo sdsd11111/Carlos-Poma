@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Carlos Poma Sastrería</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Leaflet CSS para el mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+<body>
+    <!-- Header Component -->
+    <div id="header-component"></div>
+
+    <main class="main-content">
+        <!-- Hero Contacto -->
+        <section class="hero contact-hero" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/sobre-nosotros/Nuestra Historia.jpg') no-repeat center center/cover; background-color: #000;">
+            <div class="hero-content">
+                <h1>Contacte Nuestro Atelier<br><span class="highlight">en Loja, Ecuador.</span></h1>
+                <p class="hero-subtitle">Estamos listos para atender sus consultas y asesorarle en su próximo proyecto de sastrería fina.</p>
+                <div class="cta-container">
+                    <a href="#contact-form" class="btn-gold">
+                        <i class="fas fa-envelope"></i> Enviar Mensaje
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-info">
+            <div class="container">
+                <p><i class="fas fa-envelope"></i> Email: [Su correo electrónico]</p>
+                <p><i class="fas fa-clock"></i> Horario: Lunes a Viernes de 9:00 a 18:00</p>
+                
+                <div class="contact-form">
+                    <h3>Envíenos un Mensaje</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Nombre completo" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="phone" name="phone" placeholder="Teléfono (opcional)">
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" rows="5" placeholder="Su mensaje" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-gold">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                
+                <!-- Mapa de Google Maps -->
+                <div id="map" class="map-container">
+                    <div class="map-placeholder">
+                        <p>Mapa de ubicación se cargará aquí</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- Footer Component -->
+<div id="footer-component"></div>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        // Cargar componentes
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHeader();
+            loadFooter();
+            
+            // Inicializar el mapa
+            const map = L.map('map').setView([-3.9931, -79.2012], 15); // Coordenadas de Loja
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            // Añadir marcador
+            L.marker([-3.9931, -79.2012]).addTo(map)
+                .bindPopup('Carlos Poma Sastrería<br>Loja, Ecuador')
+                .openPopup();
+        });
+    </script>
+</body>
+</html>
