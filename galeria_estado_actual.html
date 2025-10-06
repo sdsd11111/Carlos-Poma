@@ -2,16 +2,19 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería - Carlos Poma</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <style>
+        /* Variables de colores */
         :root {
             --gold: #B89B6A;
             --silver: #C0C0C0;
             --dark: #1a1a1a;
             --light: #f8f9fa;
         }
+        
         /* Reset y estilos base */
         * {
             margin: 0;
@@ -23,28 +26,28 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f9f9f9;
+            overflow-x: hidden;
         }
         
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
         }
         
-        /* Hero Section */
+        /* Gallery Hero */
         .gallery-hero {
             position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/galeria/hero-bg.jpg') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
             background-color: #000;
-            min-height: 60vh;
+            min-height: 100vh;
+            width: 100%;
+            margin: 0;
+            padding: 90px 0 0 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 100px 0;
         }
         
         .gallery-hero .hero-content {
@@ -57,23 +60,10 @@
             margin: 0 auto;
         }
         
-        .gallery-hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin: 0 0 1.5rem 0;
-            color: #fff;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        }
-        
         .gallery-hero .hero-content p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
             color: rgba(255, 255, 255, 0.9);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
         }
         
         .gallery-hero h1 {
@@ -86,44 +76,29 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
         
-        /* Galería */
+        /* Sección de Galería */
         .gallery-section {
             padding: 80px 0;
-            background-color: #000; /* Fondo negro */
-            color: #fff; /* Texto blanco */
+            background-color: var(--light);
         }
         
         .section-title {
             text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 50px;
-            color: #fff; /* Texto blanco */
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--dark);
             position: relative;
-            padding-bottom: 20px;
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            padding-bottom: 15px;
+            font-weight: 600;
         }
         
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--gold);
-        }
-        
-        .section-title {
+        .portfolio-title {
             text-align: center;
-            font-size: 2rem;
-            margin: 20px 0;
-            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            color: var(--dark);
+            font-weight: 500;
             opacity: 0.9;
-            position: relative;
         }
         
         .section-title::after {
@@ -137,197 +112,212 @@
             background: var(--gold);
         }
         
-        /* Filtros */
+        /* Filtros - Estilo de Pestañas */
         .filter-tabs {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            margin: 0 auto 40px;
+            flex-wrap: nowrap;
+            margin: 0 auto 50px;
             padding: 10px 0;
-            gap: 10px;
+            max-width: 100%;
+            overflow-x: auto;
+            scrollbar-width: none; /* Para Firefox */
+            -ms-overflow-style: none; /* Para IE y Edge */
+            background-color: var(--dark);
+            border-radius: 50px;
+            width: fit-content;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-tabs::-webkit-scrollbar {
+            display: none; /* Para Chrome, Safari y Opera */
         }
         
         .filter-btn {
-            background: #FFD700; /* Amarillo dorado */
-            border: 2px solid #FFD700;
-            color: #000;
+            background: transparent;
+            border: 2px solid var(--silver);
+            color: var(--silver);
             padding: 12px 30px;
+            margin: 0 5px;
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 700;
+            font-size: 0.95rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
             border-radius: 30px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+            min-width: 120px;
+            text-align: center;
         }
         
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: #FFC000; /* Un tono más oscuro de amarillo al pasar el mouse */
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        .filter-btn:hover {
+            color: var(--gold);
+            border-color: var(--gold);
         }
-
-        /* Grid de Galería */
+        
+        .filter-btn.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(184, 155, 106, 0.3);
+        }
+        
+        /* Grid de Galería - 5 filas x 3 columnas */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 1fr;
             gap: 30px;
-            padding: 0 15px;
+            padding: 0 20px;
+            margin: 0 auto;
+            max-width: 1400px;
         }
         
         .gallery-card {
             position: relative;
-            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: #ffffff;
-            color: #000000;
-        }
-        
-        .card-content {
-            padding: 20px;
-            background: #ffffff;
-            color: #000000; /* Texto negro */
-        }
-        
-        .card-category {
-            display: inline-block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #B89B6A;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-        
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #000000;
-            margin: 0 0 10px 0;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .card-description {
-            font-size: 0.9rem;
-            color: #333333;
-            line-height: 1.5;
-            margin: 0;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: white;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .gallery-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
         
         .card-image {
             width: 100%;
-            height: 250px;
+            height: 280px;
             overflow: hidden;
+            position: relative;
+        }
+        
+        .card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .gallery-card:hover .card-image::before {
+            opacity: 1;
         }
         
         .card-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.7s cubic-bezier(0.25, 0.45, 0.45, 0.95);
         }
         
         .gallery-card:hover .card-image img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
         
         .card-content {
             padding: 20px;
-            background: #ffffff;
-            color: #000000;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
-        .gallery-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            color: #000000;
-            font-weight: 600;
-        }
-        
-        .gallery-card p {
-            color: #333333;
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .category {
+        .card-category {
             display: inline-block;
-            background: var(--gold);
-            color: white !important;
-            padding: 5px 15px;
-            border-radius: 20px;
             font-size: 0.75rem;
-            font-weight: 600;
+            color: var(--gold);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 10px;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            position: relative;
+            padding-left: 15px;
         }
         
-        .filter-btn:hover {
-            background-color: #FFC000;
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        .card-category::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--gold);
+            border-radius: 50%;
         }
         
-        .gallery-card h3 {
+        .card-title {
             font-size: 1.25rem;
-            margin-bottom: 10px;
-            color: #000000;
+            margin: 8px 0 12px;
+            color: var(--dark);
             font-weight: 600;
             line-height: 1.4;
         }
         
-        .gallery-card p {
-            color: #333333;
+        .card-description {
+            color: #666;
             font-size: 0.95rem;
-            margin-bottom: 15px;
             line-height: 1.6;
+            margin-bottom: 15px;
+            flex-grow: 1;
         }
         
         /* Responsive */
         @media (max-width: 1200px) {
             .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            
+            .card-image {
+                height: 240px;
             }
         }
         
-        @media (max-width: 576px) {
-            .gallery-hero {
-                min-height: 50vh;
-                padding: 80px 0;
-            }
-            
-            .gallery-hero h1 {
-                font-size: 2rem;
-                color: white;
-            }
-            
-            .gallery-section {
-                padding: 30px 0;
+        @media (max-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
             }
             
             .section-title {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
+            }
+            
+            .portfolio-title {
+                font-size: 1.6rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
                 margin-bottom: 25px;
-                color: white;
+            }
+            
+            .portfolio-title {
+                font-size: 1.4rem;
                 margin-bottom: 30px;
             }
             
             .filter-tabs {
-                justify-content: center;
-                padding: 10px 0;
+                justify-content: flex-start;
+                padding: 15px 20px;
                 border-radius: 0;
                 margin: 0 -20px 40px;
                 width: calc(100% + 40px);
@@ -362,6 +352,17 @@
             }
             
             .card-content {
+                padding: 18px;
+            }
+            
+            .card-title {
+                font-size: 1.2rem;
+            }
+            
+            .card-description {
+                font-size: 0.9rem;
+            }
+            
             .filter-tabs {
                 overflow-x: auto;
                 padding-bottom: 10px;
@@ -884,159 +885,36 @@
 <body>
     <!-- Header Component -->
     <div id="header-component"></div>
-    <main style="margin: 0; padding: 0; background-color: #000000;">
+    <main class="main-content">
         <!-- Hero Galería -->
-        <section class="gallery-hero" style="
-            position: relative;
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('images/galeria/4.jpg') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            margin: 0;
-            padding: 0;
-        ">
-            <div class="hero-content" style="
-                position: relative;
-                z-index: 2;
-                max-width: 1000px;
-                padding: 0 20px;
-            ">
-                <h1 style="
-                    font-family: 'Playfair Display', serif;
-                    font-size: 4rem;
-                    font-weight: 700;
-                    line-height: 1.2;
-                    margin: 0 0 1.5rem 0;
-                    color: #fff;
-                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-                    text-transform: uppercase;
-                    letter-spacing: 2px;
-                ">Nuestro Portafolio de Obras Maestras</h1>
-                <div class="cta-container" style="margin-top: 40px;">
-                    <a href="#gallery-section" class="btn-gold" id="gallery-cta" style="
-                        display: inline-block;
-                        padding: 15px 40px;
-                        background-color: #FFD700;
-                        color: #000;
-                        text-decoration: none;
-                        border-radius: 30px;
-                        font-weight: 700;
-                        transition: all 0.3s ease;
-                        text-transform: uppercase;
-                        letter-spacing: 1.5px;
-                        font-size: 0.9rem;
-                        border: 2px solid #FFD700;
-                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-                    ">
+        <section class="hero gallery-hero" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/galeria/1.jpg') no-repeat center center/cover; background-color: #000;">
+            <div class="hero-content">
+                <h1>Nuestro Trabajo
+                    <span class="highlight">Arte en Tela</span>
+                </h1>
+                <p class="hero-subtitle">Explora nuestra colección de trabajos realizados con excelencia</p>
+                <div class="cta-container">
+                    <a href="#gallery-section" class="btn-gold" id="gallery-cta">
                         <i class="fas fa-images"></i> Ver Galería
                     </a>
-                    <style>
-                        #gallery-cta:hover {
-                            background-color: #FFC000;
-                            transform: translateY(-3px);
-                            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-                        }
-                    </style>
                 </div>
             </div>
         </section>
 
-        <!-- Sección de Galería -->
-        <section id="gallery-section" class="gallery-section" style="
-            padding: 80px 0 0 0;
-            background-color: #000000;
-            color: #ffffff;
-            margin: 0;
-            position: relative;
-            z-index: 1;
-        ">
-            <div class="container" style="
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 20px;
-            ">
-                <h2 class="section-title" style="
-                    text-align: center;
-                    font-family: 'Playfair Display', serif;
-                    font-size: 2.8rem;
-                    color: #ffffff;
-                    margin-bottom: 60px;
-                    position: relative;
-                    padding-bottom: 20px;
-                    text-transform: uppercase;
-                    letter-spacing: 2px;
-                ">
-                    Explore Nuestras Creaciones por Categoría
-                    <span style="
-                        display: block;
-                        width: 80px;
-                        height: 3px;
-                        background: #FFD700;
-                        margin: 20px auto 0;
-                    "></span>
-                </h2>
+        <!-- Nueva Sección de Galería -->
+        <section id="gallery-section" class="gallery-section">
+            <div class="container">
+                <h2 class="section-title">Explore Nuestras Creaciones por Categoría</h2>
                 
                 <!-- Filtros -->
-                <div class="filter-tabs" id="filterTabs" style="
-                    display: flex;
-                    justify-content: center;
-                    flex-wrap: wrap;
-                    gap: 15px;
-                    margin: 0 auto 40px;
-                    padding: 15px 20px;
-                    background-color: rgba(0, 0, 0, 0.8);
-                    border-radius: 50px;
-                    max-width: 90%;
-                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-                ">
-                    <button class="filter-btn active" data-filter="all" style="
-                        background: #FFD700;
-                        border: 2px solid #FFD700;
-                        color: #000;
-                        padding: 12px 30px;
-                        font-weight: 600;
-                        transition: all 0.3s ease;
-                    ">Todos</button>
-                    <button class="filter-btn" data-filter="bespoke" style="
-                        background: transparent;
-                        border: 2px solid #FFD700;
-                        color: #FFD700;
-                        padding: 12px 25px;
-                        font-weight: 600;
-                        transition: all 0.3s ease;
-                    ">Confección Bespoke</button>
-                    <button class="filter-btn" data-filter="ejecutivo" style="
-                        background: transparent;
-                        border: 2px solid #FFD700;
-                        color: #FFD700;
-                        padding: 12px 25px;
-                        font-weight: 600;
-                        transition: all 0.3s ease;
-                    ">Sastrería Ejecutiva</button>
-                    <button class="filter-btn" data-filter="arreglos" style="
-                        background: transparent;
-                        border: 2px solid #FFD700;
-                        color: #FFD700;
-                        padding: 12px 25px;
-                        font-weight: 600;
-                        transition: all 0.3s ease;
-                    ">Arreglos y Transformaciones</button>
+                <div class="filter-tabs" id="filterTabs">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="bespoke">Confección Bespoke</button>
+                    <button class="filter-btn" data-filter="ejecutivo">Sastrería Ejecutiva</button>
+                    <button class="filter-btn" data-filter="arreglos">Arreglos y Transformaciones</button>
                 </div>
                 
-                <h3 class="portfolio-title" style="
-                    text-align: center;
-                    font-family: 'Playfair Display', serif;
-                    font-size: 2.2rem;
-                    color: #ffffff;
-                    margin: 40px 0 30px 0;
-                    font-weight: 500;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                ">Nuestro Portafolio de Obras Maestras</h3>
+                <h3 class="portfolio-title">Nuestro Portafolio de Obras Maestras</h3>
                 
                 <!-- Grid de Galería - 5 filas x 3 columnas -->
                 <div class="gallery-grid" id="galleryGrid">
@@ -1224,27 +1102,11 @@
         </section>
         
         <!-- CTA de Conversión -->
-        <section class="gallery-cta" style="background-color: #000000; margin: 0; padding: 0 0 80px 0;">
-            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-                <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Su proyecto, nuestra próxima obra maestra</h2>
-                <p style="color: #ffffff; text-align: center; max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem; line-height: 1.6;">Contáctenos para empezar a crear prendas que reflejen su estilo y personalidad únicos.</p>
-                <div style="text-align: center;">
-                    <a href="contacto.html" style="
-                        display: inline-block;
-                        padding: 15px 40px;
-                        background-color: #FFD700;
-                        color: #000000;
-                        text-decoration: none;
-                        border-radius: 30px;
-                        font-weight: 700;
-                        transition: all 0.3s ease;
-                        text-transform: uppercase;
-                        letter-spacing: 1.5px;
-                        font-size: 0.9rem;
-                        border: 2px solid #FFD700;
-                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-                    ">Solicitar Consulta</a>
-                </div>
+        <section class="gallery-cta">
+            <div class="container">
+                <h2>Su proyecto, nuestra próxima obra maestra</h2>
+                <p>Contáctenos para empezar a crear prendas que reflejen su estilo y personalidad únicos.</p>
+                <a href="contacto.html" class="btn-gold">Solicitar Consulta</a>
             </div>
         </section>
     </main>
