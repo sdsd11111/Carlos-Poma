@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - Carlos Poma</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        :root {
+            --gold: #B89B6A;
+            --silver: #C0C0C0;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+        }
+        
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background-color: #000;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Hero Section */
+        .gallery-hero {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('images/galeria/4.jpg') no-repeat center center/cover;
+            background-color: #000;
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0;
+            margin: 0;
+            z-index: 0;
+        }
+        
+        /* Efecto de superposición sutil */
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.9) 100%);
+            z-index: 1;
+        }
+        
+        .gallery-hero .hero-content {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            z-index: 2;
+            margin-top: -50px; /* Ajuste para centrar verticalmente */
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .gallery-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 1.5rem 0;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .gallery-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Galería */
+        .gallery-section {
+            padding: 80px 0;
+            background-color: #000;
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #fff;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        /* Filtros */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 0 auto 50px;
+            padding: 15px 0;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border-radius: 30px;
+            margin: 5px;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gold);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(184, 155, 106, 0.3);
+        }
+        
+        /* Grid de Galería */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 15px;
+            background-color: #000;
+        }
+        
+        .gallery-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            background: #1a1a1a;
+            border: 1px solid #333;
+        }
+        
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.15);
+            border-color: var(--gold);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 25px;
+            position: relative;
+            background: var(--dark);
+            color: white;
+        }
+        
+        .gallery-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .gallery-card p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .category {
+            display: inline-block;
+            background: var(--gold);
+            color: white !important;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (min-width: 1025px) {
+            .gallery-hero {
+                position: fixed;
+                background-attachment: fixed;
+                height: 100vh;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 4.5rem;
+                letter-spacing: 1.5px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .gallery-hero p {
+                font-size: 1.3rem;
+                max-width: 700px;
+                margin: 0 auto 2.5rem;
+                line-height: 1.6;
+            }
+            
+            .gallery-hero .hero-content {
+                margin-top: 0;
+            }
+        }
+        
+        /* Asegurar que el contenido principal no quede detrás del hero */
+        main {
+            position: relative;
+            z-index: 10;
+            background: #000;
+            margin-top: 100vh;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .gallery-hero {
+                min-height: 50vh;
+                padding: 80px 0;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-section {
+                padding: 50px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                padding: 0 10px;
+                gap: 25px;
+            }
+            
+            .card-image {
+                height: 220px;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-component"></div>
+    
+    <main>
+        <!-- Hero Section -->
+        <section class="gallery-hero">
+            <div class="hero-content">
+                <h1>Nuestra Galería</h1>
+                <p>Descubre nuestra colección de trabajos realizados con pasión y dedicación.</p>
+            </div>
+        </section>
+        
+        <!-- Galería -->
+        <section class="gallery-section">
+            <div class="container">
+                <h2 class="section-title">Nuestros Trabajos</h2>
+                
+                <!-- Filtros -->
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="bespoke">Bespoke</button>
+                    <button class="filter-btn" data-filter="ejecutivo">Ejecutivo</button>
+                    <button class="filter-btn" data-filter="arreglos">Arreglos</button>
+                </div>
+                
+                <!-- Grid de Galería -->
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Tarjeta de ejemplo - Reemplaza con tus propias imágenes -->
+                    <div class="gallery-card" data-category="bespoke">
+                        <div class="card-image">
+                            <img src="images/galeria/ejemplo1.jpg" alt="Traje a medida">
+                        </div>
+                        <div class="card-content">
+                            <h3>Traje a Medida</h3>
+                            <p>Traje clásico confeccionado a mano con los mejores tejidos.</p>
+                            <span class="category">Bespoke</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Añade más tarjetas según sea necesario -->
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer Component -->
+    <div id="footer-component"></div>
+    
+    <!-- Scripts -->
+    <script src="js/header-footer.js"></script>
+    <script>
+        // Inicialización de la galería
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar header y footer
+            const headerComponent = document.getElementById('header-component');
+            const footerComponent = document.getElementById('footer-component');
+            
+            // Aquí puedes agregar la lógica para cargar el header y footer
+            // headerComponent.innerHTML = '...';
+            // footerComponent.innerHTML = '...';
+            
+            // Filtrado de la galería
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-card');
+            
+            // Función para filtrar los elementos
+            function filterGallery(category) {
+                galleryItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                        // Animación de aparición
+                        item.style.animation = 'fadeIn 0.5s ease-in-out';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Añadir evento de clic a los botones de filtro
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remover clase active de todos los botones
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Agregar clase active al botón clickeado
+                    button.classList.add('active');
+                    
+                    // Obtener la categoría a filtrar
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Aplicar filtro
+                    filterGallery(filter);
+                    
+                    // Scroll suave a la sección de galería
+                    document.querySelector('.gallery-section').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Filtrar al cargar la página
+            filterGallery('all');
+            
+            // Añadir animación de entrada a las tarjetas
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Aplicar observador a cada tarjeta
+            document.querySelectorAll('.gallery-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
