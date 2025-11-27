@@ -1,56 +1,196 @@
 import nodemailer from 'nodemailer';
 
-async function handler(req, res) {
+// Función para validar el correo electrónico
+const isValidEmail = (email) => {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(String(email).toLowerCase());
+};
+
+// Función para escapar HTML
+const escapeHtml = (text) => {
+  if (!text) return '';
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+};
+
+export default async function handler(req, res) {
+  // Configurar CORS
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-V, Authorization'
+  );
+
+  // Manejar solicitudes de preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  // Solo permitir método POST
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Método no permitido' });
+    return res.status(405).json({ 
+      success: false, 
+      error: 'Método no permitido',
+      method: req.method 
+    });
   }
-
-  const { name, email, phone, message } = req.body;
-
-  // Validación de campos requeridos
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: 'Por favor complete todos los campos requeridos' });
-  }
-
-  // Configuración del transporte SMTP
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT),
-    secure: process.env.SMTP_SECURE === 'true',
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS.replace(/^'|'$/g, '') // Eliminar comillas si existen
-    },
-    tls: {
-      rejectUnauthorized: false // Solo para desarrollo, en producción usa un certificado válido
-    }
-  });
-
-  // Configuración del correo
-  const mailOptions = {
-    from: `"Formulario de Contacto" <${process.env.SMTP_USER}>`,
-    to: process.env.SMTP_USER,
-    subject: `Nuevo mensaje de contacto de ${name}`,
-    html: `
-      <h2>Nuevo mensaje de contacto</h2>
-      <p><strong>Nombre:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      ${phone ? `<p><strong>Teléfono:</strong> ${phone}</p>` : ''}
-      <p><strong>Mensaje:</strong></p>
-      <p>${message.replace(/\n/g, '<br>')}</p>
-    `
-  };
 
   try {
+    // Validar que el body es un JSON válido
+    if (typeof req.body === 'string') {
+      try {
+        req.body = JSON.parse(req.body);
+      } catch (e) {
+        console.error('Error al parsear JSON:', e);
+        return res.status(400).json({ 
+          success: false, 
+          error: 'Formato de solicitud inválido' 
+        });
+      }
+    }
+
+    const { name, email, phone, message } = req.body;
+
+    console.log('Datos recibidos:', { name, email, phone, message: message ? '***' : 'vacío' });
+
+    // Validación de campos requeridos
+    if (!name || !email || !message) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Por favor complete todos los campos requeridos',
+        missing: {
+          name: !name,
+          email: !email,
+          message: !message
+        }
+      });
+    }
+
+    // Validar formato de correo electrónico
+    if (!isValidEmail(email)) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Por favor ingrese un correo electrónico válido' 
+      });
+    }
+
+    // Validar variables de entorno
+    const requiredEnvVars = ['SMTP_HOST', 'SMTP_PORT', 'SMTP_SECURE', 'SMTP_USER', 'SMTP_PASS'];
+    const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
+    
+    if (missingVars.length > 0) {
+      console.error('Variables de entorno faltantes:', missingVars);
+      return res.status(500).json({ 
+        success: false, 
+        error: 'Error de configuración del servidor',
+        missingEnvVars: missingVars
+      });
+    }
+
+    // Configuración del transporte SMTP
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT, 10),
+      secure: process.env.SMTP_SECURE === 'true',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS.replace(/^'|'$/g, '')
+      },
+      tls: {
+        // Solo para desarrollo, en producción es mejor usar un certificado válido
+        rejectUnauthorized: process.env.NODE_ENV !== 'production'
+      },
+      debug: true, // Habilitar depuración
+      logger: true // Registrar información detallada
+    });
+
+    // Verificar la conexión SMTP
+    try {
+      await transporter.verify();
+      console.log('Conexión SMTP verificada correctamente');
+    } catch (smtpError) {
+      console.error('Error al verificar la conexión SMTP:', smtpError);
+      return res.status(500).json({ 
+        success: false, 
+        error: 'No se pudo conectar al servidor de correo',
+        details: smtpError.message
+      });
+    }
+
+    // Configuración del correo (con escape de HTML para prevenir XSS)
+    const mailOptions = {
+      from: `"Formulario de Contacto" <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_TO || process.env.SMTP_USER,
+      replyTo: `"${escapeHtml(name)}" <${escapeHtml(email)}>`,
+      subject: `Nuevo mensaje de contacto de ${escapeHtml(name)}`,
+      html: `
+        <h2>Nuevo mensaje de contacto</h2>
+        <p><strong>Nombre:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        ${phone ? `<p><strong>Teléfono:</strong> ${escapeHtml(phone)}</p>` : ''}
+        <p><strong>Mensaje:</strong></p>
+        <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
+        <hr>
+        <p>Enviado desde el formulario de contacto de Sastrería Carlos Poma</p>
+      `,
+      text: `Nuevo mensaje de contacto
+        
+        Nombre: ${name}
+        Email: ${email}
+        ${phone ? `Teléfono: ${phone}\n` : ''}
+        Mensaje:
+        ${message}
+        
+        ---
+        Enviado desde el formulario de contacto de Sastrería Carlos Poma
+      `
+    };
+
+    console.log('Enviando correo con opciones:', {
+      ...mailOptions,
+      text: mailOptions.text ? '***' : undefined
+    });
+
     // Enviar correo
-    await transporter.sendMail(mailOptions);
-    return res.status(200).json({ success: true, message: 'Mensaje enviado correctamente' });
+    const info = await transporter.sendMail(mailOptions);
+    
+    console.log('Correo enviado:', info.messageId);
+    
+    return res.status(200).json({ 
+      success: true, 
+      message: 'Mensaje enviado correctamente',
+      messageId: info.messageId
+    });
+    
   } catch (error) {
-    console.error('Error al enviar el correo:', error);
+    console.error('Error en el manejador de envío de correo:', error);
+    
+    // Mensaje de error más amigable para el usuario
+    let errorMessage = 'Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.';
+    
+    // Detectar errores comunes
+    if (error.code === 'ECONNECTION') {
+      errorMessage = 'No se pudo conectar al servidor de correo. Por favor, inténtalo más tarde.';
+    } else if (error.code === 'EAUTH') {
+      errorMessage = 'Error de autenticación con el servidor de correo. Por favor, contacta al administrador.';
+    } else if (error.responseCode === 550) {
+      errorMessage = 'No se pudo entregar el correo. Por favor, verifica la dirección de correo electrónico.';
+    }
+    
     return res.status(500).json({ 
-      error: 'Error al enviar el mensaje. Por favor, intente nuevamente más tarde.'
+      success: false, 
+      error: errorMessage,
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 }
 
+// Para compatibilidad con Vercel Serverless Functions
+export { handler };
 export { handler };
