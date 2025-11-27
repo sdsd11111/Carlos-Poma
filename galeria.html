@@ -3,7 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería - Carlos Poma</title>
+    <title>Galería | Sastrería Carlos Poma - Alta Costura en Loja</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/favicon.ico">
+    
+    <!-- Meta Tags para Open Graph (Facebook, WhatsApp, etc.) -->
+    <meta property="og:title" content="Galería | Sastrería Carlos Poma - Alta Costura en Loja">
+    <meta property="og:description" content="Explora nuestra galería de trabajos en sastrería fina. Trajes a medida, arreglos rápidos y confección personalizada en Loja, Ecuador.">
+    <meta property="og:image" content="https://carlos-poma.vercel.app/images/imagen%20destacada.jpg">
+    <meta property="og:url" content="https://carlos-poma.vercel.app/galeria.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sastrería Carlos Poma">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Galería | Sastrería Carlos Poma - Alta Costura en Loja">
+    <meta name="twitter:description" content="Explora nuestra galería de trabajos en sastrería fina. Trajes a medida, arreglos rápidos y confección personalizada en Loja, Ecuador.">
+    <meta name="twitter:image" content="https://carlos-poma.vercel.app/images/imagen%20destacada.jpg">
+    
+    <!-- Meta Tags adicionales -->
+    <meta name="description" content="Galería de trabajos de Sastrería Carlos Poma. Descubre nuestros diseños personalizados, trajes a medida y trabajos de alta costura en Loja, Ecuador.">
+    <meta name="keywords" content="galería sastrería, trabajos de sastrería, trajes a medida Loja, alta costura Ecuador, sastrería personalizada, Carlos Poma trabajos, portafolio sastrería">
+    <meta name="author" content="Sastrería Carlos Poma">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://carlos-poma.vercel.app/galeria.html">
+    
     <link rel="stylesheet" href="css/styles.css">
     <style>
         :root {
@@ -1224,7 +1251,7 @@
         </section>
         
         <!-- CTA de Conversión -->
-        <section class="gallery-cta" style="background-color: #000000; margin: 0; padding: 0 0 80px 0;">
+        <section class="gallery-cta" style="background-color: #000000; margin: 0; padding: 80px 0;">
             <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
                 <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Su proyecto, nuestra próxima obra maestra</h2>
                 <p style="color: #ffffff; text-align: center; max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem; line-height: 1.6;">Contáctenos para empezar a crear prendas que reflejen su estilo y personalidad únicos.</p>
@@ -1247,6 +1274,9 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Espacio entre secciones -->
+        <div style="height: 80px; background-color: #000000;"></div>
     </main>
 
     <!-- Lightbox Container -->
@@ -1258,159 +1288,262 @@
         </div>
     </div>
 
-    <!-- Footer Component -->
-    <div id="footer-component"></div>
-
     <!-- Scripts -->
     <script src="js/components.js"></script>
     <script>
-        // Cargar componentes
+        // Esperar a que el DOM esté completamente cargado
         document.addEventListener('DOMContentLoaded', function() {
-            loadHeader();
-            loadFooter();
-            
+            // Cargar componentes usando la función loadComponents del archivo components.js
+            if (typeof loadComponents === 'function') {
+                loadComponents().then(() => {
+                    console.log('Componentes cargados correctamente');
+                    // Inicializar la galería después de cargar los componentes
+                    initGallery();
+                }).catch(error => {
+                    console.error('Error al cargar componentes:', error);
+                    // Intentar inicializar la galería de todos modos
+                    initGallery();
+                });
+            } else {
+                console.error('La función loadComponents no está disponible');
+                // Intentar inicializar la galería de todos modos
+                initGallery();
+            }
+        });
+
+        // Función principal para inicializar la galería
+        function initGallery() {
             // Elementos de la galería
             const filterButtons = document.querySelectorAll('.filter-btn');
             const galleryCards = document.querySelectorAll('.gallery-card');
             const gallerySection = document.getElementById('gallery-section');
-            
-            // Función para manejar el desplazamiento suave
-            function smoothScrollTo(element, offset = 100) {
-                if (!element) return;
-                
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - offset;
-                
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-            
-            // Función para actualizar la visualización de la galería
-            function updateGalleryDisplay() {
-                const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'all';
-                
-                // 1. Mostrar u ocultar tarjetas según el filtro
-                galleryCards.forEach(card => {
-                    const cardCategories = card.getAttribute('data-category').split(' ');
-                    
-                    if (activeFilter === 'all' || cardCategories.includes(activeFilter)) {
-                        card.style.display = 'flex';
-                        // Animación de entrada
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, 50);
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                // 2. Actualizar la URL sin recargar la página
-                const newUrl = `${window.location.pathname}?filter=${activeFilter}`;
-                window.history.pushState({ path: newUrl }, '', newUrl);
-            }
-            
-            // Función para aplicar filtro
-            function filterItems(category) {
-                // Actualizar botones activos
-                filterButtons.forEach(btn => {
-                    const btnFilter = btn.getAttribute('data-filter');
-                    btn.classList.toggle('active', btnFilter === category);
-                });
-                
-                // Actualizar la visualización
-                updateGalleryDisplay();
-                
-                // Desplazamiento suave a la galería
-                if (gallerySection) {
-                    smoothScrollTo(gallerySection);
-                }
-            }
-            
-            // Manejar clics en los botones de filtro
-            filterButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const filter = button.getAttribute('data-filter');
-                    filterItems(filter);
-                });
-            });
-            
-            // Manejar el botón de la galería en el hero
-            const galleryCta = document.getElementById('gallery-cta');
-            if (galleryCta) {
-                galleryCta.addEventListener('click', (e) => {
-                    if (gallerySection) {
-                        e.preventDefault();
-                        smoothScrollTo(gallerySection, 90); // 90px de margen para el header fijo
-                    }
-                });
-            }
-            
-            // Manejar redimensionamiento de la ventana
-            let resizeTimer;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(updateGalleryDisplay, 250);
-            });
-            
-            // Procesar parámetros de URL al cargar
-            const urlParams = new URLSearchParams(window.location.search);
-            const filterParam = urlParams.get('filter');
-            if (filterParam && ['all', 'bespoke', 'ejecutivo', 'arreglos'].includes(filterParam)) {
-                filterItems(filterParam);
-            } else {
-                // Inicializar con todos los elementos visibles
-                updateGalleryDisplay();
-            }
-            
-            // Lightbox
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-image');
             const lightboxCaption = document.getElementById('lightbox-caption');
             const closeBtn = document.querySelector('.lightbox-close');
-            
-            // Abrir lightbox al hacer clic en una tarjeta
-            galleryCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const img = card.querySelector('img');
-                    const title = card.querySelector('.card-title')?.textContent || '';
-                    const description = card.querySelector('.card-description')?.textContent || '';
-                    
-                    lightboxImg.src = img.src;
-                    lightboxImg.alt = img.alt;
-                    lightboxCaption.textContent = `${title} - ${description}`;
-                    
-                    lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden'; // Prevenir scroll
+
+            console.log('Inicializando galería...');
+            console.log('Botones de filtro encontrados:', filterButtons.length);
+            console.log('Tarjetas de galería encontradas:', galleryCards.length);
+
+            // Inicializar estilos de las tarjetas
+            function initCards() {
+                galleryCards.forEach(card => {
+                    card.style.display = 'flex';
+                    card.style.opacity = '1';
+                    card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                 });
-            });
-            
-            // Cerrar lightbox
-            function closeLightbox() {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto'; // Restaurar scroll
             }
             
-            closeBtn.addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    closeLightbox();
+            // Función para manejar el filtrado
+            function filterGallery(category) {
+                console.log('Filtrando por:', category);
+                
+                // Actualizar botones activos
+                filterButtons.forEach(btn => {
+                    const btnFilter = btn.getAttribute('data-filter');
+                    if (btnFilter === category) {
+                        btn.classList.add('active');
+                        btn.style.background = '#FFD700';
+                        btn.style.color = '#000';
+                    } else {
+                        btn.classList.remove('active');
+                        btn.style.background = 'transparent';
+                        btn.style.color = '#FFD700';
+                    }
+                });
+                
+                // Filtrar tarjetas
+                galleryCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    const shouldShow = category === 'all' || cardCategory === category;
+                    
+                    if (shouldShow) {
+                        card.style.display = 'flex';
+                        // Pequeño retraso para la animación
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        // Esperar a que termine la animación para ocultar
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+                
+                // Actualizar la URL sin recargar la página
+                const newUrl = category === 'all' 
+                    ? window.location.pathname 
+                    : `${window.location.pathname}?filter=${category}`;
+                window.history.pushState({ category }, '', newUrl);
+                
+                // Desplazamiento suave a la galería
+                if (gallerySection) {
+                    const elementPosition = gallerySection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - 100;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
                 }
-            });
+            }
             
-            // Cerrar con tecla ESC
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                    closeLightbox();
+            // Función para cerrar el lightbox
+            function closeLightbox() {
+                if (lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
                 }
-            });
-        });
+            }
+            
+            // Inicializar eventos
+            function initEvents() {
+                console.log('Inicializando eventos...');
+                
+                // Manejar clics en los botones de filtro
+                filterButtons.forEach(button => {
+                    // Remover cualquier event listener existente para evitar duplicados
+                    button.removeEventListener('click', handleFilterClick);
+                    // Agregar el nuevo event listener
+                    button.addEventListener('click', handleFilterClick);
+                });
+                
+                // Función manejadora para los clics en los botones de filtro
+                function handleFilterClick(e) {
+                    e.preventDefault();
+                    const filter = this.getAttribute('data-filter');
+                    console.log('Botón clickeado - Filtro:', filter);
+                    filterGallery(filter);
+                }
+                
+                // Manejar navegación atrás/adelante
+                window.addEventListener('popstate', function() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const filterParam = urlParams.get('filter') || 'all';
+                    console.log('Navegación - Filtro:', filterParam);
+                    filterGallery(filterParam);
+                });
+                
+                // Configurar lightbox si existe
+                if (lightbox && lightboxImg && lightboxCaption && closeBtn) {
+                    console.log('Configurando lightbox...');
+                    
+                    // Abrir lightbox al hacer clic en una tarjeta
+                    galleryCards.forEach(card => {
+                        card.style.cursor = 'pointer';
+                        card.addEventListener('click', function() {
+                            const img = this.querySelector('img');
+                            const title = this.querySelector('.card-title')?.textContent || '';
+                            const description = this.querySelector('.card-description')?.textContent || '';
+                            
+                            if (img && lightboxImg) {
+                                lightboxImg.src = img.src;
+                                lightboxImg.alt = img.alt || '';
+                                lightboxCaption.textContent = `${title} - ${description}`;
+                                
+                                lightbox.classList.add('active');
+                                document.body.style.overflow = 'hidden';
+                            }
+                        });
+                    });
+                    
+                    // Cerrar lightbox
+                    closeBtn.addEventListener('click', closeLightbox);
+                    
+                    // Cerrar haciendo clic fuera de la imagen
+                    lightbox.addEventListener('click', function(e) {
+                        if (e.target === lightbox) {
+                            closeLightbox();
+                        }
+                    });
+                    
+                    // Cerrar con tecla ESC
+                    document.addEventListener('keydown', function(e) {
+                        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                            closeLightbox();
+                        }
+                    });
+                }
+            }
+            
+            // Inicializar todo
+            initCards();
+            initEvents();
+            
+            // Inicializar con el filtro de la URL o 'all' por defecto
+            const urlParams = new URLSearchParams(window.location.search);
+            const filterParam = urlParams.get('filter') || 'all';
+            console.log('Inicializando con filtro:', filterParam);
+            filterGallery(filterParam);
+            
+            console.log('Galería inicializada correctamente');
+        }
     </script>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Columna 1: Marca y Localización -->
+            <div class="footer-column">
+                <div class="footer-brand">
+                    <h2 class="footer-title">CARLOS POMA</h2>
+                    <p class="footer-subtitle">SASTRERÍA ALTA COSTURA</p>
+                </div>
+                <div class="footer-location">
+                    <div class="footer-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Loja, Ecuador</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna 2: Contacto y Horarios -->
+            <div class="footer-column">
+                <h3 class="footer-heading">CONTACTO</h3>
+                <div class="footer-contact">
+                    <div class="footer-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Av. Gran Colombia 10-20 y Bernardo Valdivieso, Loja</span>
+                    </div>
+                    <div class="footer-info">
+                        <i class="fas fa-phone-alt"></i>
+                        <a href="tel:+593988396561">098 839 6561</a>
+                    </div>
+                    <div class="footer-info">
+                        <i class="far fa-clock"></i>
+                        <div>
+                            <p><strong>Lunes a Viernes:</strong> 10:30 – 19:00</p>
+                            <p><strong>Sábados:</strong> Solo con Cita Previa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna 3: Navegación -->
+            <div class="footer-column">
+                <h3 class="footer-heading">NAVEGACIÓN</h3>
+                <nav class="footer-nav">
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="confeccion-bespoke.html">Confección Bespoke</a></li>
+                        <li><a href="arreglos-rapidos.html">Arreglos Rápidos</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+        <!-- Línea de Copyright -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                <p>Diseñado por <a href="https://cesarreyesjaramillo.com" target="_blank" rel="noopener">Cesar Reyes</a> | Sastrería Alta Costura 2025</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

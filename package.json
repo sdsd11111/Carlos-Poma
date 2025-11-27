@@ -1,0 +1,26 @@
+{
+  "name": "sastreria-carlos-poma",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "nodemailer": "^6.10.1"
+  },
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "description": "",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdsd11111/Carlos-Poma.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sdsd11111/Carlos-Poma/issues"
+  },
+  "homepage": "https://github.com/sdsd11111/Carlos-Poma#readme"
+}
