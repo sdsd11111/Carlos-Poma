@@ -10,10 +10,6 @@
     {
       "src": "*.html",
       "use": "@vercel/static"
-    },
-    {
-      "src": "**/*.html",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -28,8 +24,8 @@
   ],
   "functions": {
     "api/send-email.js": {
-      "memory": 128,
-      "maxDuration": 5
+      "memory": 1024,
+      "maxDuration": 10
     }
   },
   "build": {
