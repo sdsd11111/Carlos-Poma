@@ -1,0 +1,32 @@
+# robots.txt for Sastrería Carlos Poma
+User-agent: *
+Allow: /
+Disallow: /components/
+Disallow: /*.bak$
+Disallow: /*.backup$
+Disallow: /*_backup
+Disallow: /*_old
+
+# Sitemap location
+Sitemap: https://sastreriacarlospoma.com/sitemap.xml
+
+# Crawl-delay: 10  # Uncomment if you want to limit crawl rate
+
+# Block specific files
+Disallow: /*.php$
+Disallow: /*.inc$
+Disallow: /*.log$
+Disallow: /*.sql$
+
+# Allow all other files and directories
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.webp$
+
+# Block specific pages if needed
+# Disallow: /private/
+# Disallow: /admin/

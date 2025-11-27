@@ -2,30 +2,16 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
-  "builds": [
+  "rewrites": [
     {
-      "src": "api/send-email.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/send-email",
-      "dest": "/api/send-email"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/api/send-email",
+      "destination": "/api/send-email.js"
     }
   ],
   "functions": {
     "api/send-email.js": {
-      "memory": 1024,
-      "maxDuration": 10
+      "memory": 128,
+      "maxDuration": 5
     }
   },
   "build": {

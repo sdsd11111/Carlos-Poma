@@ -17,6 +17,15 @@ const escapeHtml = (text) => {
     .replace(/'/g, '&#039;');
 };
 
+// Función para enviar respuesta JSON consistente
+const sendJsonResponse = (res, status, data) => {
+  res.setHeader('Content-Type', 'application/json');
+  return res.status(status).json({
+    success: status >= 200 && status < 300,
+    ...data
+  });
+};
+
 export default async function handler(req, res) {
   // Configurar CORS
   res.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -34,8 +43,7 @@ export default async function handler(req, res) {
 
   // Solo permitir método POST
   if (req.method !== 'POST') {
-    return res.status(405).json({ 
-      success: false, 
+    return sendJsonResponse(res, 405, { 
       error: 'Método no permitido',
       method: req.method 
     });
@@ -48,8 +56,7 @@ export default async function handler(req, res) {
         req.body = JSON.parse(req.body);
       } catch (e) {
         console.error('Error al parsear JSON:', e);
-        return res.status(400).json({ 
-          success: false, 
+        return sendJsonResponse(res, 400, { 
           error: 'Formato de solicitud inválido' 
         });
       }
@@ -61,8 +68,7 @@ export default async function handler(req, res) {
 
     // Validación de campos requeridos
     if (!name || !email || !message) {
-      return res.status(400).json({ 
-        success: false, 
+      return sendJsonResponse(res, 400, { 
         error: 'Por favor complete todos los campos requeridos',
         missing: {
           name: !name,
@@ -74,8 +80,7 @@ export default async function handler(req, res) {
 
     // Validar formato de correo electrónico
     if (!isValidEmail(email)) {
-      return res.status(400).json({ 
-        success: false, 
+      return sendJsonResponse(res, 400, { 
         error: 'Por favor ingrese un correo electrónico válido' 
       });
     }
@@ -86,8 +91,7 @@ export default async function handler(req, res) {
     
     if (missingVars.length > 0) {
       console.error('Variables de entorno faltantes:', missingVars);
-      return res.status(500).json({ 
-        success: false, 
+      return sendJsonResponse(res, 500, { 
         error: 'Error de configuración del servidor',
         missingEnvVars: missingVars
       });
@@ -116,10 +120,9 @@ export default async function handler(req, res) {
       console.log('Conexión SMTP verificada correctamente');
     } catch (smtpError) {
       console.error('Error al verificar la conexión SMTP:', smtpError);
-      return res.status(500).json({ 
-        success: false, 
+      return sendJsonResponse(res, 500, { 
         error: 'No se pudo conectar al servidor de correo',
-        details: smtpError.message
+        details: process.env.NODE_ENV === 'development' ? smtpError.message : undefined
       });
     }
 
@@ -158,15 +161,18 @@ export default async function handler(req, res) {
     });
 
     // Enviar correo
-    const info = await transporter.sendMail(mailOptions);
-    
-    console.log('Correo enviado:', info.messageId);
-    
-    return res.status(200).json({ 
-      success: true, 
-      message: 'Mensaje enviado correctamente',
-      messageId: info.messageId
-    });
+    try {
+      const info = await transporter.sendMail(mailOptions);
+      console.log('Correo enviado:', info.messageId);
+      
+      return sendJsonResponse(res, 200, { 
+        message: 'Mensaje enviado correctamente',
+        messageId: info.messageId
+      });
+    } catch (sendError) {
+      console.error('Error al enviar el correo:', sendError);
+      throw sendError; // Será manejado por el catch general
+    }
     
   } catch (error) {
     console.error('Error en el manejador de envío de correo:', error);
@@ -183,8 +189,7 @@ export default async function handler(req, res) {
       errorMessage = 'No se pudo entregar el correo. Por favor, verifica la dirección de correo electrónico.';
     }
     
-    return res.status(500).json({ 
-      success: false, 
+    return sendJsonResponse(res, 500, { 
       error: errorMessage,
       details: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
@@ -192,5 +197,4 @@ export default async function handler(req, res) {
 }
 
 // Para compatibilidad con Vercel Serverless Functions
-export { handler };
 export { handler };
