@@ -1,36 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería | Sastrería Carlos Poma - Alta Costura en Loja</title>
-    
+
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/favicon.ico">
-    
-    <!-- Meta Tags para Open Graph (Facebook, WhatsApp, etc.) -->
-    <meta property="og:title" content="Galería | Sastrería Carlos Poma - Alta Costura en Loja">
-    <meta property="og:description" content="Explora nuestra galería de trabajos en sastrería fina. Trajes a medida, arreglos rápidos y confección personalizada en Loja, Ecuador.">
-    <meta property="og:image" content="https://carlos-poma.vercel.app/images/imagen%20destacada.jpg">
-    <meta property="og:url" content="https://carlos-poma.vercel.app/galeria.html">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-cuadrado.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-cuadrado.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-cuadrado.png">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Open Graph (Facebook, WhatsApp, etc.) -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Sastrería Carlos Poma">
-    
+    <meta property="og:url" content="https://sastreriacarlospoma.com/galeria.html">
+    <meta property="og:title" content="Galería | Sastrería Carlos Poma - Alta Costura en Loja">
+    <meta property="og:description"
+        content="Explora nuestra galería de trabajos en sastrería fina. Trajes a medida, arreglos rápidos y confección personalizada en Loja, Ecuador.">
+    <meta property="og:image" content="https://sastreriacarlospoma.com/images/logo-cuadrado.png">
+    <meta property="og:site_name" content="Carlos Poma Sastrería">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:type" content="image/png">
+
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Galería | Sastrería Carlos Poma - Alta Costura en Loja">
-    <meta name="twitter:description" content="Explora nuestra galería de trabajos en sastrería fina. Trajes a medida, arreglos rápidos y confección personalizada en Loja, Ecuador.">
-    <meta name="twitter:image" content="https://carlos-poma.vercel.app/images/imagen%20destacada.jpg">
-    
+    <meta name="twitter:description"
+        content="Explora nuestra galería de trabajos en sastrería fina. Trajes a medida, arreglos rápidos y confección personalizada en Loja, Ecuador.">
+    <meta name="twitter:image" content="https://sastreriacarlospoma.com/images/logo-cuadrado.png">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ImageGallery",
+      "name": "Galería de Trabajos - Carlos Poma Sastrería",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Carlos Poma Sastrería Alta Costura",
+        "image": "https://sastreriacarlospoma.com/images/logo-cuadrado.png",
+        "logo": "https://sastreriacarlospoma.com/images/logo-cuadrado.png",
+        "telephone": "+593988396561"
+      },
+      "description": "Galería de trabajos de Sastrería Carlos Poma. Descubre nuestros diseños personalizados, trajes a medida y trabajos de alta costura en Loja, Ecuador."
+    }
+    </script>
+
     <!-- Meta Tags adicionales -->
-    <meta name="description" content="Galería de trabajos de Sastrería Carlos Poma. Descubre nuestros diseños personalizados, trajes a medida y trabajos de alta costura en Loja, Ecuador.">
-    <meta name="keywords" content="galería sastrería, trabajos de sastrería, trajes a medida Loja, alta costura Ecuador, sastrería personalizada, Carlos Poma trabajos, portafolio sastrería">
+    <meta name="description"
+        content="Galería de trabajos de Sastrería Carlos Poma. Descubre nuestros diseños personalizados, trajes a medida y trabajos de alta costura en Loja, Ecuador.">
+    <meta name="keywords"
+        content="galería sastrería, trabajos de sastrería, trajes a medida Loja, alta costura Ecuador, sastrería personalizada, Carlos Poma trabajos, portafolio sastrería">
     <meta name="author" content="Sastrería Carlos Poma">
-    
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://carlos-poma.vercel.app/galeria.html">
-    
+    <link rel="canonical" href="https://sastreriacarlospoma.com/galeria.html">
+
     <link rel="stylesheet" href="css/styles.css">
     <style>
         :root {
@@ -39,27 +68,28 @@
             --dark: #1a1a1a;
             --light: #f8f9fa;
         }
+
         /* Reset y estilos base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
             background-color: #f9f9f9;
         }
-        
+
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-        
+
         /* Hero Section */
         .gallery-hero {
             position: relative;
@@ -73,7 +103,7 @@
             color: white;
             padding: 100px 0;
         }
-        
+
         .gallery-hero .hero-content {
             position: relative;
             width: 100%;
@@ -83,7 +113,7 @@
             z-index: 2;
             margin: 0 auto;
         }
-        
+
         .gallery-hero h1 {
             font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
@@ -93,7 +123,7 @@
             color: #fff;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
-        
+
         .gallery-hero .hero-content p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
@@ -102,7 +132,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        
+
         .gallery-hero h1 {
             font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
@@ -112,19 +142,22 @@
             color: #fff;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
-        
+
         /* Galería */
         .gallery-section {
             padding: 80px 0;
-            background-color: #000; /* Fondo negro */
-            color: #fff; /* Texto blanco */
+            background-color: #000;
+            /* Fondo negro */
+            color: #fff;
+            /* Texto blanco */
         }
-        
+
         .section-title {
             text-align: center;
             font-size: 2.8rem;
             margin-bottom: 50px;
-            color: #fff; /* Texto blanco */
+            color: #fff;
+            /* Texto blanco */
             position: relative;
             padding-bottom: 20px;
             font-family: 'Playfair Display', serif;
@@ -132,7 +165,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -143,7 +176,7 @@
             height: 3px;
             background: var(--gold);
         }
-        
+
         .section-title {
             text-align: center;
             font-size: 2rem;
@@ -152,7 +185,7 @@
             opacity: 0.9;
             position: relative;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -163,7 +196,7 @@
             height: 3px;
             background: var(--gold);
         }
-        
+
         /* Filtros */
         .filter-tabs {
             display: flex;
@@ -173,9 +206,10 @@
             padding: 10px 0;
             gap: 10px;
         }
-        
+
         .filter-btn {
-            background: #FFD700; /* Amarillo dorado */
+            background: #FFD700;
+            /* Amarillo dorado */
             border: 2px solid #FFD700;
             color: #000;
             padding: 12px 30px;
@@ -188,10 +222,11 @@
             border-radius: 30px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-        
+
         .filter-btn:hover,
         .filter-btn.active {
-            background: #FFC000; /* Un tono más oscuro de amarillo al pasar el mouse */
+            background: #FFC000;
+            /* Un tono más oscuro de amarillo al pasar el mouse */
             color: #000;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -204,7 +239,7 @@
             gap: 30px;
             padding: 0 15px;
         }
-        
+
         .gallery-card {
             position: relative;
             border-radius: 8px;
@@ -214,13 +249,14 @@
             background: #ffffff;
             color: #000000;
         }
-        
+
         .card-content {
             padding: 20px;
             background: #ffffff;
-            color: #000000; /* Texto negro */
+            color: #000000;
+            /* Texto negro */
         }
-        
+
         .card-category {
             display: inline-block;
             font-size: 0.8rem;
@@ -230,7 +266,7 @@
             letter-spacing: 1px;
             margin-bottom: 8px;
         }
-        
+
         .card-title {
             font-size: 1.2rem;
             font-weight: 700;
@@ -238,56 +274,56 @@
             margin: 0 0 10px 0;
             font-family: 'Playfair Display', serif;
         }
-        
+
         .card-description {
             font-size: 0.9rem;
             color: #333333;
             line-height: 1.5;
             margin: 0;
         }
-        
+
         .gallery-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
-        
+
         .card-image {
             width: 100%;
             height: 250px;
             overflow: hidden;
         }
-        
+
         .card-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
-        
+
         .gallery-card:hover .card-image img {
             transform: scale(1.05);
         }
-        
+
         .card-content {
             padding: 20px;
             background: #ffffff;
             color: #000000;
         }
-        
+
         .gallery-card h3 {
             font-size: 1.25rem;
             margin-bottom: 10px;
             color: #000000;
             font-weight: 600;
         }
-        
+
         .gallery-card p {
             color: #333333;
             font-size: 0.95rem;
             margin-bottom: 15px;
             line-height: 1.6;
         }
-        
+
         .category {
             display: inline-block;
             background: var(--gold);
@@ -300,14 +336,14 @@
             letter-spacing: 1px;
             margin-top: 10px;
         }
-        
+
         .filter-btn:hover {
             background-color: #FFC000;
             color: #000;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
-        
+
         .gallery-card h3 {
             font-size: 1.25rem;
             margin-bottom: 10px;
@@ -315,43 +351,43 @@
             font-weight: 600;
             line-height: 1.4;
         }
-        
+
         .gallery-card p {
             color: #333333;
             font-size: 0.95rem;
             margin-bottom: 15px;
             line-height: 1.6;
         }
-        
+
         /* Responsive */
         @media (max-width: 1200px) {
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-        
+
         @media (max-width: 576px) {
             .gallery-hero {
                 min-height: 50vh;
                 padding: 80px 0;
             }
-            
+
             .gallery-hero h1 {
                 font-size: 2rem;
                 color: white;
             }
-            
+
             .gallery-section {
                 padding: 30px 0;
             }
-            
+
             .section-title {
                 font-size: 1.8rem;
                 margin-bottom: 25px;
                 color: white;
                 margin-bottom: 30px;
             }
-            
+
             .filter-tabs {
                 justify-content: center;
                 padding: 10px 0;
@@ -362,7 +398,7 @@
                 border-top: 1px solid #eee;
                 border-bottom: 1px solid #eee;
             }
-            
+
             .filter-btn {
                 padding: 10px 20px;
                 font-size: 0.85rem;
@@ -371,543 +407,572 @@
                 border-width: 1.5px;
                 background-color: white;
             }
-            
+
             .filter-btn.active {
                 transform: none;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             }
-            
+
             .gallery-grid {
                 grid-template-columns: 1fr;
                 padding: 0 15px;
                 max-width: 500px;
                 margin: 0 auto;
             }
-            
+
             .card-image {
                 height: 300px;
             }
-            
+
             .card-content {
-            .filter-tabs {
-                overflow-x: auto;
-                padding-bottom: 10px;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                flex-wrap: nowrap;
+                .filter-tabs {
+                    overflow-x: auto;
+                    padding-bottom: 10px;
+                    -webkit-overflow-scrolling: touch;
+                    scrollbar-width: none;
+                    flex-wrap: nowrap;
+                }
+
+                .filter-tabs::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .filter-btn {
+                    white-space: nowrap;
+                    margin: 0 5px;
+                    padding: 8px 20px;
+                    font-size: 0.9rem;
+                }
+
+                .section-title {
+                    font-size: 2rem;
+                    margin-bottom: 30px;
+                }
+
+                /* Ajustes adicionales para móviles pequeños */
+                @media (max-width: 480px) {
+                    .section-title {
+                        font-size: 1.8rem;
+                    }
+
+                    .portfolio-title {
+                        font-size: 1.3rem;
+                    }
+
+                    .card-image {
+                        height: 260px;
+                    }
+
+                    .card-content {
+                        padding: 15px;
+                    }
+
+                    .card-title {
+                        font-size: 1.1rem;
+                    }
+
+                    .card-description {
+                        font-size: 0.85rem;
+                    }
+                }
             }
-            
-            .filter-tabs::-webkit-scrollbar {
-                display: none;
+
+            /* Clases de utilidad */
+            .text-center {
+                text-align: center;
             }
-            
+
+            .mt-4 {
+                margin-top: 2rem;
+            }
+
+            .mb-4 {
+                margin-bottom: 2rem;
+            }
+
+            .filter-container {
+                margin: 20px 0 30px;
+            }
+
+            /* Desktop Filter Buttons */
+            .filter-nav {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
             .filter-btn {
-                white-space: nowrap;
-                margin: 0 5px;
-                padding: 8px 20px;
+                padding: 8px 16px;
+                background: transparent;
+                border: 1px solid #FFD700;
+                color: #FFD700;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-family: 'Playfair Display', serif;
                 font-size: 0.9rem;
             }
-            
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 30px;
+
+            .filter-btn:hover,
+            .filter-btn.active {
+                background: #FFD700;
+                color: #000;
             }
-            
-            /* Ajustes adicionales para móviles pequeños */
-            @media (max-width: 480px) {
-                .section-title {
-                    font-size: 1.8rem;
-                }
-                
-                .portfolio-title {
-                    font-size: 1.3rem;
-                }
-                
-                .card-image {
-                    height: 260px;
-                }
-                
-                .card-content {
-                    padding: 15px;
-                }
-                
-                .card-title {
-                    font-size: 1.1rem;
-                }
-                
-                .card-description {
-                    font-size: 0.85rem;
-                }
-            }
-        }
-        
-        /* Clases de utilidad */
-        .text-center { text-align: center; }
-        .mt-4 { margin-top: 2rem; }
-        .mb-4 { margin-bottom: 2rem; }
-        .filter-container {
-            margin: 20px 0 30px;
-        }
-        
-        /* Desktop Filter Buttons */
-        .filter-nav {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .filter-btn {
-            padding: 8px 16px;
-            background: transparent;
-            border: 1px solid #FFD700;
-            color: #FFD700;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Playfair Display', serif;
-            font-size: 0.9rem;
-        }
-        
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: #FFD700;
-            color: #000;
-        }
-        
-        /* Mobile Filter Dropdown */
-        .filter-select {
-            display: none;
-            margin-bottom: 20px;
-        }
-        
-        .mobile-filter {
-            width: 100%;
-            padding: 10px 15px;
-            border: 1px solid #FFD700;
-            background: transparent;
-            color: #FFD700;
-            border-radius: 4px;
-            font-family: 'Playfair Display', serif;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFD700%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-            background-repeat: no-repeat, repeat;
-            background-position: right 0.7em top 50%, 0 0;
-            background-size: 0.65em auto, 100%;
-        }
-        
-        .mobile-filter option {
-            background: #000;
-            color: #fff;
-            padding: 10px;
-        }
-        
-        /* Gallery Grid */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            padding: 1rem;
-            max-width: 100%;
-            margin: 0 auto;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        @media (min-width: 768px) {
-            .gallery-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                grid-auto-rows: auto;
-                gap: 15px;
-                padding: 20px;
-                max-width: 1000px;
-                margin: 0 auto;
-            }
-            
-            .gallery-item {
-                aspect-ratio: 1 / 1; /* Hace que todos los elementos sean cuadrados */
-                width: 100%;
-                overflow: hidden;
-                position: relative;
-                border-radius: 0;
-                transition: transform 0.3s ease;
-                background: #f8f8f8;
-                border: 1px solid #eee;
-            }
-            
-            .gallery-item img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                display: block;
-            }
-            
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(20px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-            
-            .gallery-item.visible {
-                opacity: 1;
-            }
-            
-            /* Efecto hover mejorado */
-            .gallery-item:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            }
-            .gallery-item img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: transform 0.3s ease;
-            }
-            .gallery-item:hover img {
-                transform: scale(1.05);
-            }
-        }
-        
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            will-change: transform;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            backface-visibility: hidden;
-        }
-        .gallery-item .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 1rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        .gallery-item:hover .overlay {
-            transform: translateY(0);
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 20px;
-            color: white;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover .overlay {
-            transform: translateY(0);
-        }
-        
-        /* Lightbox */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .lightbox.active {
-            display: flex;
-        }
-        
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-        
-        .lightbox img {
-            max-width: 100%;
-            max-height: 80vh;
-            display: block;
-            margin: 0 auto;
-        }
-        
-        .lightbox-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: #fff;
-            font-size: 30px;
-            cursor: pointer;
-        }
-        
-        .lightbox-caption {
-            color: #fff;
-            text-align: center;
-            margin-top: 10px;
-        }
-        
-        /* =================================
-           MOBILE STYLES (max-width: 768px)
-           ================================= */
-        /* Reset para móvil */
-        * {
-            -webkit-text-size-adjust: 100%;
-            -moz-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-        }
-        
-        html, body {
-            overflow-x: hidden;
-            width: 100% !important;
-            max-width: 100% !important;
-            position: relative;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-        
-        /* Forzar vista móvil */
-        @media screen and (min-width: 1px) {
-            /* 1. Hero Adjustments */
-            .gallery-hero {
-                min-height: calc(100vh - 70px) !important; /* Ajuste para el header */
-                height: auto;
-                margin: 0 !important;
-                padding: 70px 0 0 0 !important; /* Espacio para el header */
-                width: 100% !important;
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .gallery-hero .hero-content {
-                padding: 2rem 1.5rem;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                max-width: 100%;
-            }
-            
-            .gallery-hero h1 {
-                font-size: 2rem !important;
-                line-height: 1.2 !important;
-                margin: 0 0 1rem 0 !important;
-                padding: 0 1rem;
-                width: 100%;
-            }
-            
-            .hero-subtitle {
-                font-size: 1rem !important;
-                padding: 0 1rem;
-                margin: 0 0 1.5rem 0 !important;
-                line-height: 1.5;
-                max-width: 600px;
-            }
-            
-            /* 2. Filter Styles */
-            .filter-nav {
-                display: none; /* Ocultamos los botones en móvil */
-            }
-            
-            .filter-container {
-                position: relative;
-                width: 100%;
-                margin: 0 0 2rem 0;
-            }
-            
+
+            /* Mobile Filter Dropdown */
             .filter-select {
-                display: block !important;
-                width: 100%;
-                margin: 0 0 1.5rem 0;
+                display: none;
+                margin-bottom: 20px;
             }
-            
+
             .mobile-filter {
-                display: block !important;
                 width: 100%;
-                padding: 14px 20px;
+                padding: 10px 15px;
                 border: 1px solid #FFD700;
-                background: rgba(0, 0, 0, 0.9);
+                background: transparent;
                 color: #FFD700;
-                border-radius: 6px;
+                border-radius: 4px;
                 font-family: 'Playfair Display', serif;
-                font-size: 1rem;
                 -webkit-appearance: none;
                 -moz-appearance: none;
                 appearance: none;
                 background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFD700%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-                background-repeat: no-repeat;
-                background-position: right 15px center;
-                background-size: 12px auto;
-                cursor: pointer;
-                transition: all 0.3s ease;
+                background-repeat: no-repeat, repeat;
+                background-position: right 0.7em top 50%, 0 0;
+                background-size: 0.65em auto, 100%;
             }
-            
-            .mobile-filter:focus {
-                outline: none;
-                box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+
+            .mobile-filter option {
+                background: #000;
+                color: #fff;
+                padding: 10px;
             }
-            
-            /* 3. Gallery Grid Adjustments */
-            .gallery-section {
-                padding: 2rem 0 !important;
-                overflow: hidden;
-            }
-            
-            .gallery-title {
-                font-size: 1.8rem !important;
-                text-align: center;
-                margin: 0 0 1.5rem 0 !important;
-                padding: 0 1rem;
-                color: #333;
-            }
-            
+
+            /* Gallery Grid */
             .gallery-grid {
-                display: flex !important;
-                flex-direction: column;
-                gap: 2rem !important;
-                padding: 0 1rem !important;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1rem;
+                max-width: 100%;
                 margin: 0 auto;
-                max-width: 600px;
+                width: 100%;
+                box-sizing: border-box;
             }
-            
+
+            @media (min-width: 768px) {
+                .gallery-grid {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-auto-rows: auto;
+                    gap: 15px;
+                    padding: 20px;
+                    max-width: 1000px;
+                    margin: 0 auto;
+                }
+
+                .gallery-item {
+                    aspect-ratio: 1 / 1;
+                    /* Hace que todos los elementos sean cuadrados */
+                    width: 100%;
+                    overflow: hidden;
+                    position: relative;
+                    border-radius: 0;
+                    transition: transform 0.3s ease;
+                    background: #f8f8f8;
+                    border: 1px solid #eee;
+                }
+
+                .gallery-item img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .gallery-item.visible {
+                    opacity: 1;
+                }
+
+                /* Efecto hover mejorado */
+                .gallery-item:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                }
+
+                .gallery-item img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.3s ease;
+                }
+
+                .gallery-item:hover img {
+                    transform: scale(1.05);
+                }
+            }
+
             .gallery-item {
-                margin: 0 0 1rem 0 !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                border-radius: 8px;
-                overflow: hidden;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-            
-            .gallery-item:active {
-                transform: scale(0.98);
-            }
-            
-            .gallery-item img {
-                width: 100% !important;
-                height: auto !important;
-                display: block;
-                transition: transform 0.5s ease;
-            }
-            
-            .gallery-item:hover img {
-                transform: scale(1.03);
-            }
-            
-            .gallery-item .overlay {
-                padding: 1.5rem;
-                background: rgba(0, 0, 0, 0.8);
-                color: white;
-                transform: translateY(0);
-                transition: all 0.3s ease;
-            }
-            
-            .gallery-item h4 {
-                margin: 0 0 0.5rem 0;
-                font-size: 1.2rem;
-                font-weight: 600;
-            }
-            
-            .gallery-item p {
-                margin: 0;
-                font-size: 0.9rem;
-                opacity: 0.9;
-            }
-            
-            /* Lightbox Adjustments */
-            .lightbox {
-                background: rgba(0, 0, 0, 0.95);
-            }
-            
-            .lightbox-content {
-                width: 95% !important;
-                max-width: 100% !important;
-                padding: 1rem !important;
-                margin: 0 auto !important;
                 position: relative;
+                overflow: hidden;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                will-change: transform;
+                backface-visibility: hidden;
+                transform: translateZ(0);
             }
-            
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+                backface-visibility: hidden;
+            }
+
+            .gallery-item .overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 1rem;
+                transform: translateY(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .gallery-item:hover .overlay {
+                transform: translateY(0);
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.05);
+            }
+
+            .overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+                padding: 20px;
+                color: white;
+                transform: translateY(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .gallery-item:hover .overlay {
+                transform: translateY(0);
+            }
+
+            /* Lightbox */
+            .lightbox {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                z-index: 1000;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .lightbox.active {
+                display: flex;
+            }
+
+            .lightbox-content {
+                position: relative;
+                max-width: 90%;
+                max-height: 90%;
+            }
+
             .lightbox img {
-                max-height: 60vh !important;
-                width: auto !important;
-                max-width: 100% !important;
-                margin: 0 auto !important;
-                display: block !important;
-                border-radius: 4px;
+                max-width: 100%;
+                max-height: 80vh;
+                display: block;
+                margin: 0 auto;
             }
-            
+
             .lightbox-close {
-                top: 10px;
-                right: 10px;
-                font-size: 28px;
-                color: #FFD700;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-                opacity: 0.9;
-                transition: opacity 0.2s ease;
+                position: absolute;
+                top: -40px;
+                right: 0;
+                color: #fff;
+                font-size: 30px;
+                cursor: pointer;
             }
-            
-            .lightbox-close:hover {
-                opacity: 1;
-            }
-            
+
             .lightbox-caption {
                 color: #fff;
                 text-align: center;
-                margin-top: 1rem;
-                padding: 0.5rem;
-                font-size: 1rem;
-                line-height: 1.5;
+                margin-top: 10px;
             }
-            
-            /* Container Adjustments */
-            .container {
-                padding: 0 1rem !important;
+
+            /* =================================
+           MOBILE STYLES (max-width: 768px)
+           ================================= */
+            /* Reset para móvil */
+            * {
+                -webkit-text-size-adjust: 100%;
+                -moz-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+            }
+
+            html,
+            body {
+                overflow-x: hidden;
+                width: 100% !important;
                 max-width: 100% !important;
-                margin: 0 auto;
+                position: relative;
+                margin: 0 !important;
+                padding: 0 !important;
             }
-            
-            /* Hide section title since we have it in the hero */
-            .gallery-section h2 {
-                display: none;
+
+            /* Forzar vista móvil */
+            @media screen and (min-width: 1px) {
+
+                /* 1. Hero Adjustments */
+                .gallery-hero {
+                    min-height: calc(100vh - 70px) !important;
+                    /* Ajuste para el header */
+                    height: auto;
+                    margin: 0 !important;
+                    padding: 70px 0 0 0 !important;
+                    /* Espacio para el header */
+                    width: 100% !important;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .gallery-hero .hero-content {
+                    padding: 2rem 1.5rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    max-width: 100%;
+                }
+
+                .gallery-hero h1 {
+                    font-size: 2rem !important;
+                    line-height: 1.2 !important;
+                    margin: 0 0 1rem 0 !important;
+                    padding: 0 1rem;
+                    width: 100%;
+                }
+
+                .hero-subtitle {
+                    font-size: 1rem !important;
+                    padding: 0 1rem;
+                    margin: 0 0 1.5rem 0 !important;
+                    line-height: 1.5;
+                    max-width: 600px;
+                }
+
+                /* 2. Filter Styles */
+                .filter-nav {
+                    display: none;
+                    /* Ocultamos los botones en móvil */
+                }
+
+                .filter-container {
+                    position: relative;
+                    width: 100%;
+                    margin: 0 0 2rem 0;
+                }
+
+                .filter-select {
+                    display: block !important;
+                    width: 100%;
+                    margin: 0 0 1.5rem 0;
+                }
+
+                .mobile-filter {
+                    display: block !important;
+                    width: 100%;
+                    padding: 14px 20px;
+                    border: 1px solid #FFD700;
+                    background: rgba(0, 0, 0, 0.9);
+                    color: #FFD700;
+                    border-radius: 6px;
+                    font-family: 'Playfair Display', serif;
+                    font-size: 1rem;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFD700%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+                    background-repeat: no-repeat;
+                    background-position: right 15px center;
+                    background-size: 12px auto;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                .mobile-filter:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+                }
+
+                /* 3. Gallery Grid Adjustments */
+                .gallery-section {
+                    padding: 2rem 0 !important;
+                    overflow: hidden;
+                }
+
+                .gallery-title {
+                    font-size: 1.8rem !important;
+                    text-align: center;
+                    margin: 0 0 1.5rem 0 !important;
+                    padding: 0 1rem;
+                    color: #333;
+                }
+
+                .gallery-grid {
+                    display: flex !important;
+                    flex-direction: column;
+                    gap: 2rem !important;
+                    padding: 0 1rem !important;
+                    margin: 0 auto;
+                    max-width: 600px;
+                }
+
+                .gallery-item {
+                    margin: 0 0 1rem 0 !important;
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+
+                .gallery-item:active {
+                    transform: scale(0.98);
+                }
+
+                .gallery-item img {
+                    width: 100% !important;
+                    height: auto !important;
+                    display: block;
+                    transition: transform 0.5s ease;
+                }
+
+                .gallery-item:hover img {
+                    transform: scale(1.03);
+                }
+
+                .gallery-item .overlay {
+                    padding: 1.5rem;
+                    background: rgba(0, 0, 0, 0.8);
+                    color: white;
+                    transform: translateY(0);
+                    transition: all 0.3s ease;
+                }
+
+                .gallery-item h4 {
+                    margin: 0 0 0.5rem 0;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                }
+
+                .gallery-item p {
+                    margin: 0;
+                    font-size: 0.9rem;
+                    opacity: 0.9;
+                }
+
+                /* Lightbox Adjustments */
+                .lightbox {
+                    background: rgba(0, 0, 0, 0.95);
+                }
+
+                .lightbox-content {
+                    width: 95% !important;
+                    max-width: 100% !important;
+                    padding: 1rem !important;
+                    margin: 0 auto !important;
+                    position: relative;
+                }
+
+                .lightbox img {
+                    max-height: 60vh !important;
+                    width: auto !important;
+                    max-width: 100% !important;
+                    margin: 0 auto !important;
+                    display: block !important;
+                    border-radius: 4px;
+                }
+
+                .lightbox-close {
+                    top: 10px;
+                    right: 10px;
+                    font-size: 28px;
+                    color: #FFD700;
+                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                    opacity: 0.9;
+                    transition: opacity 0.2s ease;
+                }
+
+                .lightbox-close:hover {
+                    opacity: 1;
+                }
+
+                .lightbox-caption {
+                    color: #fff;
+                    text-align: center;
+                    margin-top: 1rem;
+                    padding: 0.5rem;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                }
+
+                /* Container Adjustments */
+                .container {
+                    padding: 0 1rem !important;
+                    max-width: 100% !important;
+                    margin: 0 auto;
+                }
+
+                /* Hide section title since we have it in the hero */
+                .gallery-section h2 {
+                    display: none;
+                }
+
+                /* Adjust the "Maestría en Ternos" heading */
+                .gallery-section h3 {
+                    text-align: center;
+                    font-size: 1.5rem;
+                    margin: 0 0 1.5rem 0;
+                    padding: 0 1rem;
+                    color: #333;
+                    font-weight: 600;
+                }
             }
-            
-            /* Adjust the "Maestría en Ternos" heading */
-            .gallery-section h3 {
-                text-align: center;
-                font-size: 1.5rem;
-                margin: 0 0 1.5rem 0;
-                padding: 0 1rem;
-                color: #333;
-                font-weight: 600;
-            }
-        }
     </style>
 </head>
+
 <body>
     <!-- Header Component -->
     <div id="header-component"></div>
@@ -1006,7 +1071,7 @@
                         margin: 20px auto 0;
                     "></span>
                 </h2>
-                
+
                 <!-- Filtros -->
                 <div class="filter-tabs" id="filterTabs" style="
                     display: flex;
@@ -1053,7 +1118,7 @@
                         transition: all 0.3s ease;
                     ">Arreglos y Transformaciones</button>
                 </div>
-                
+
                 <h3 class="portfolio-title" style="
                     text-align: center;
                     font-family: 'Playfair Display', serif;
@@ -1064,7 +1129,7 @@
                     text-transform: uppercase;
                     letter-spacing: 1px;
                 ">Nuestro Portafolio de Obras Maestras</h3>
-                
+
                 <!-- Grid de Galería - 5 filas x 3 columnas -->
                 <div class="gallery-grid" id="galleryGrid">
                     <!-- Tarjeta 1 - Bespoke -->
@@ -1075,7 +1140,8 @@
                         <div class="card-content">
                             <span class="card-category">Bespoke</span>
                             <h3 class="card-title">Terno de Lana Fina</h3>
-                            <p class="card-description">Confección artesanal personalizada con los más altos estándares de sastrería.</p>
+                            <p class="card-description">Confección artesanal personalizada con los más altos estándares
+                                de sastrería.</p>
                         </div>
                     </div>
 
@@ -1099,7 +1165,8 @@
                         <div class="card-content">
                             <span class="card-category">Arreglos</span>
                             <h3 class="card-title">Transformación de Vestido</h3>
-                            <p class="card-description">Dale una nueva vida a tus prendas favoritas con nuestros servicios de transformación.</p>
+                            <p class="card-description">Dale una nueva vida a tus prendas favoritas con nuestros
+                                servicios de transformación.</p>
                         </div>
                     </div>
 
@@ -1123,7 +1190,8 @@
                         <div class="card-content">
                             <span class="card-category">Ejecutivo</span>
                             <h3 class="card-title">Traje Gris Carbón</h3>
-                            <p class="card-description">Elegancia y sofisticación en tonos neutros para el ejecutivo moderno.</p>
+                            <p class="card-description">Elegancia y sofisticación en tonos neutros para el ejecutivo
+                                moderno.</p>
                         </div>
                     </div>
 
@@ -1135,7 +1203,8 @@
                         <div class="card-content">
                             <span class="card-category">Arreglos</span>
                             <h3 class="card-title">Ajuste de Pantalón</h3>
-                            <p class="card-description">Ajuste perfecto para un acabado impecable en tus pantalones favoritos.</p>
+                            <p class="card-description">Ajuste perfecto para un acabado impecable en tus pantalones
+                                favoritos.</p>
                         </div>
                     </div>
 
@@ -1147,7 +1216,8 @@
                         <div class="card-content">
                             <span class="card-category">Bespoke</span>
                             <h3 class="card-title">Traje de Tres Piezas</h3>
-                            <p class="card-description">Elegancia y distinción en cada detalle de este conjunto personalizado.</p>
+                            <p class="card-description">Elegancia y distinción en cada detalle de este conjunto
+                                personalizado.</p>
                         </div>
                     </div>
 
@@ -1159,7 +1229,8 @@
                         <div class="card-content">
                             <span class="card-category">Ejecutivo</span>
                             <h3 class="card-title">Traje Negro Clásico</h3>
-                            <p class="card-description">Un clásico atemporal que nunca pasa de moda en el vestir ejecutivo.</p>
+                            <p class="card-description">Un clásico atemporal que nunca pasa de moda en el vestir
+                                ejecutivo.</p>
                         </div>
                     </div>
 
@@ -1171,7 +1242,8 @@
                         <div class="card-content">
                             <span class="card-category">Arreglos</span>
                             <h3 class="card-title">Ajuste de Chaqueta</h3>
-                            <p class="card-description">Ajuste preciso para un mejor calce y comodidad en tus chaquetas.</p>
+                            <p class="card-description">Ajuste preciso para un mejor calce y comodidad en tus chaquetas.
+                            </p>
                         </div>
                     </div>
 
@@ -1183,7 +1255,8 @@
                         <div class="card-content">
                             <span class="card-category">Bespoke</span>
                             <h3 class="card-title">Smoking Elegante</h3>
-                            <p class="card-description">Elegancia atemporal para ocasiones especiales y eventos de gala.</p>
+                            <p class="card-description">Elegancia atemporal para ocasiones especiales y eventos de gala.
+                            </p>
                         </div>
                     </div>
 
@@ -1195,7 +1268,8 @@
                         <div class="card-content">
                             <span class="card-category">Ejecutivo</span>
                             <h3 class="card-title">Traje Azul Noche</h3>
-                            <p class="card-description">Sofisticación en tonos oscuros para destacar en cualquier ocasión formal.</p>
+                            <p class="card-description">Sofisticación en tonos oscuros para destacar en cualquier
+                                ocasión formal.</p>
                         </div>
                     </div>
 
@@ -1207,7 +1281,8 @@
                         <div class="card-content">
                             <span class="card-category">Arreglos</span>
                             <h3 class="card-title">Ajuste de Manga</h3>
-                            <p class="card-description">Longitud y ajuste perfectos para un acabado profesional en tus mangas.</p>
+                            <p class="card-description">Longitud y ajuste perfectos para un acabado profesional en tus
+                                mangas.</p>
                         </div>
                     </div>
 
@@ -1219,7 +1294,8 @@
                         <div class="card-content">
                             <span class="card-category">Bespoke</span>
                             <h3 class="card-title">Traje de Etiqueta</h3>
-                            <p class="card-description">Elegancia suprema para eventos formales con un toque personalizado único.</p>
+                            <p class="card-description">Elegancia suprema para eventos formales con un toque
+                                personalizado único.</p>
                         </div>
                     </div>
 
@@ -1231,7 +1307,8 @@
                         <div class="card-content">
                             <span class="card-category">Ejecutivo</span>
                             <h3 class="card-title">Traje Gris Marengo</h3>
-                            <p class="card-description">Elegancia discreta con un toque de personalidad en tonos grises.</p>
+                            <p class="card-description">Elegancia discreta con un toque de personalidad en tonos grises.
+                            </p>
                         </div>
                     </div>
 
@@ -1243,18 +1320,23 @@
                         <div class="card-content">
                             <span class="card-category">Arreglos</span>
                             <h3 class="card-title">Ajuste de Cintura</h3>
-                            <p class="card-description">Ajuste perfecto para realzar tu figura con comodidad y estilo.</p>
+                            <p class="card-description">Ajuste perfecto para realzar tu figura con comodidad y estilo.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- CTA de Conversión -->
         <section class="gallery-cta" style="background-color: #000000; margin: 0; padding: 80px 0;">
             <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-                <h2 style="color: #ffffff; text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Su proyecto, nuestra próxima obra maestra</h2>
-                <p style="color: #ffffff; text-align: center; max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem; line-height: 1.6;">Contáctenos para empezar a crear prendas que reflejen su estilo y personalidad únicos.</p>
+                <h2
+                    style="color: #ffffff; text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif;">
+                    Su proyecto, nuestra próxima obra maestra</h2>
+                <p
+                    style="color: #ffffff; text-align: center; max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem; line-height: 1.6;">
+                    Contáctenos para empezar a crear prendas que reflejen su estilo y personalidad únicos.</p>
                 <div style="text-align: center;">
                     <a href="contacto.html" style="
                         display: inline-block;
@@ -1274,7 +1356,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Espacio entre secciones -->
         <div style="height: 80px; background-color: #000000;"></div>
     </main>
@@ -1292,7 +1374,7 @@
     <script src="js/components.js"></script>
     <script>
         // Esperar a que el DOM esté completamente cargado
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Cargar componentes usando la función loadComponents del archivo components.js
             if (typeof loadComponents === 'function') {
                 loadComponents().then(() => {
@@ -1334,11 +1416,11 @@
                     card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                 });
             }
-            
+
             // Función para manejar el filtrado
             function filterGallery(category) {
                 console.log('Filtrando por:', category);
-                
+
                 // Actualizar botones activos
                 filterButtons.forEach(btn => {
                     const btnFilter = btn.getAttribute('data-filter');
@@ -1352,12 +1434,12 @@
                         btn.style.color = '#FFD700';
                     }
                 });
-                
+
                 // Filtrar tarjetas
                 galleryCards.forEach(card => {
                     const cardCategory = card.getAttribute('data-category');
                     const shouldShow = category === 'all' || cardCategory === category;
-                    
+
                     if (shouldShow) {
                         card.style.display = 'flex';
                         // Pequeño retraso para la animación
@@ -1374,25 +1456,25 @@
                         }, 300);
                     }
                 });
-                
+
                 // Actualizar la URL sin recargar la página
-                const newUrl = category === 'all' 
-                    ? window.location.pathname 
+                const newUrl = category === 'all'
+                    ? window.location.pathname
                     : `${window.location.pathname}?filter=${category}`;
                 window.history.pushState({ category }, '', newUrl);
-                
+
                 // Desplazamiento suave a la galería
                 if (gallerySection) {
                     const elementPosition = gallerySection.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - 100;
-                    
+
                     window.scrollTo({
                         top: offsetPosition,
                         behavior: 'smooth'
                     });
                 }
             }
-            
+
             // Función para cerrar el lightbox
             function closeLightbox() {
                 if (lightbox) {
@@ -1400,11 +1482,11 @@
                     document.body.style.overflow = 'auto';
                 }
             }
-            
+
             // Inicializar eventos
             function initEvents() {
                 console.log('Inicializando eventos...');
-                
+
                 // Manejar clics en los botones de filtro
                 filterButtons.forEach(button => {
                     // Remover cualquier event listener existente para evitar duplicados
@@ -1412,7 +1494,7 @@
                     // Agregar el nuevo event listener
                     button.addEventListener('click', handleFilterClick);
                 });
-                
+
                 // Función manejadora para los clics en los botones de filtro
                 function handleFilterClick(e) {
                     e.preventDefault();
@@ -1420,71 +1502,71 @@
                     console.log('Botón clickeado - Filtro:', filter);
                     filterGallery(filter);
                 }
-                
+
                 // Manejar navegación atrás/adelante
-                window.addEventListener('popstate', function() {
+                window.addEventListener('popstate', function () {
                     const urlParams = new URLSearchParams(window.location.search);
                     const filterParam = urlParams.get('filter') || 'all';
                     console.log('Navegación - Filtro:', filterParam);
                     filterGallery(filterParam);
                 });
-                
+
                 // Configurar lightbox si existe
                 if (lightbox && lightboxImg && lightboxCaption && closeBtn) {
                     console.log('Configurando lightbox...');
-                    
+
                     // Abrir lightbox al hacer clic en una tarjeta
                     galleryCards.forEach(card => {
                         card.style.cursor = 'pointer';
-                        card.addEventListener('click', function() {
+                        card.addEventListener('click', function () {
                             const img = this.querySelector('img');
                             const title = this.querySelector('.card-title')?.textContent || '';
                             const description = this.querySelector('.card-description')?.textContent || '';
-                            
+
                             if (img && lightboxImg) {
                                 lightboxImg.src = img.src;
                                 lightboxImg.alt = img.alt || '';
                                 lightboxCaption.textContent = `${title} - ${description}`;
-                                
+
                                 lightbox.classList.add('active');
                                 document.body.style.overflow = 'hidden';
                             }
                         });
                     });
-                    
+
                     // Cerrar lightbox
                     closeBtn.addEventListener('click', closeLightbox);
-                    
+
                     // Cerrar haciendo clic fuera de la imagen
-                    lightbox.addEventListener('click', function(e) {
+                    lightbox.addEventListener('click', function (e) {
                         if (e.target === lightbox) {
                             closeLightbox();
                         }
                     });
-                    
+
                     // Cerrar con tecla ESC
-                    document.addEventListener('keydown', function(e) {
+                    document.addEventListener('keydown', function (e) {
                         if (e.key === 'Escape' && lightbox.classList.contains('active')) {
                             closeLightbox();
                         }
                     });
                 }
             }
-            
+
             // Inicializar todo
             initCards();
             initEvents();
-            
+
             // Inicializar con el filtro de la URL o 'all' por defecto
             const urlParams = new URLSearchParams(window.location.search);
             const filterParam = urlParams.get('filter') || 'all';
             console.log('Inicializando con filtro:', filterParam);
             filterGallery(filterParam);
-            
+
             console.log('Galería inicializada correctamente');
         }
     </script>
-    
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
@@ -1537,13 +1619,15 @@
                 </nav>
             </div>
         </div>
-        
+
         <!-- Línea de Copyright -->
         <div class="footer-bottom">
             <div class="footer-copyright">
-                <p>Diseñado por <a href="https://cesarreyesjaramillo.com" target="_blank" rel="noopener">Cesar Reyes</a> | Sastrería Alta Costura 2025</p>
+                <p>Diseñado por <a href="https://cesarreyesjaramillo.com" target="_blank" rel="noopener">Cesar Reyes</a>
+                    | Sastrería Alta Costura 2025</p>
             </div>
         </div>
     </footer>
 </body>
+
 </html>

@@ -1,0 +1,23 @@
+{
+    "name": "Carlos Poma - Sastrería de Alta Costura",
+    "short_name": "Carlos Poma",
+    "description": "Atelier de diseño bespoke de referencia en Loja, Ecuador. Alta costura y confección a medida.",
+    "start_url": "https://sastreriacarlospoma.com/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#D4AF37",
+    "icons": [
+        {
+            "src": "/images/logo-cuadrado.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/images/logo-cuadrado.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

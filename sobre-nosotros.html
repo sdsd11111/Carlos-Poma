@@ -1,48 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nosotros | Carlos Poma Sastrería</title>
-    
+
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/favicon.ico">
-    
-    <!-- Meta Tags para Open Graph (Facebook, WhatsApp, etc.) -->
-    <meta property="og:title" content="Sobre Nosotros | Carlos Poma Sastrería">
-    <meta property="og:description" content="Conoce nuestra historia y el arte de la sastrería fina en Loja, Ecuador. Más de [X] años de excelencia en confección a medida.">
-    <meta property="og:image" content="https://carlos-poma.vercel.app/images/imagen%20destacada.jpg">
-    <meta property="og:url" content="https://carlos-poma.vercel.app/sobre-nosotros.html">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-cuadrado.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-cuadrado.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-cuadrado.png">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Open Graph (Facebook, WhatsApp, etc.) -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Sastrería Carlos Poma">
-    
+    <meta property="og:url" content="https://sastreriacarlospoma.com/sobre-nosotros.html">
+    <meta property="og:title" content="Sobre Nosotros | Carlos Poma Sastrería">
+    <meta property="og:description"
+        content="Conoce nuestra historia y el arte de la sastrería fina en Loja, Ecuador. Más de 15 años de excelencia en confección a medida.">
+    <meta property="og:image" content="https://sastreriacarlospoma.com/images/logo-cuadrado.png">
+    <meta property="og:site_name" content="Carlos Poma Sastrería">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:type" content="image/png">
+
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Sobre Nosotros | Carlos Poma Sastrería">
-    <meta name="twitter:description" content="Conoce nuestra historia y el arte de la sastrería fina en Loja, Ecuador. Más de [X] años de excelencia en confección a medida.">
-    <meta name="twitter:image" content="https://carlos-poma.vercel.app/images/imagen%20destacada.jpg">
-    
+    <meta name="twitter:description"
+        content="Conoce nuestra historia y el arte de la sastrería fina en Loja, Ecuador. Más de 15 años de excelencia en confección a medida.">
+    <meta name="twitter:image" content="https://sastreriacarlospoma.com/images/logo-cuadrado.png">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "mainEntity": {
+        "@type": "LocalBusiness",
+        "name": "Carlos Poma Sastrería Alta Costura",
+        "image": "https://sastreriacarlospoma.com/images/logo-cuadrado.png",
+        "logo": "https://sastreriacarlospoma.com/images/logo-cuadrado.png",
+        "telephone": "+593988396561"
+      },
+      "description": "Conoce la historia de Sastrería Carlos Poma, expertos en alta costura y confección a medida en Loja, Ecuador."
+    }
+    </script>
+
     <!-- Meta Tags adicionales -->
-    <meta name="description" content="Conoce la historia de Sastrería Carlos Poma, expertos en alta costura y confección a medida en Loja, Ecuador. Calidad y tradición desde [año de fundación].">
-    <meta name="keywords" content="historia sastrería, sastrería en Loja, alta costura Ecuador, sastre profesional, confección a medida, Carlos Poma historia, tradición sastrería">
+    <meta name="description"
+        content="Conoce la historia de Sastrería Carlos Poma, expertos en alta costura y confección a medida en Loja, Ecuador. Calidad y tradición desde [año de fundación].">
+    <meta name="keywords"
+        content="historia sastrería, sastrería en Loja, alta costura Ecuador, sastre profesional, confección a medida, Carlos Poma historia, tradición sastrería">
     <meta name="author" content="Sastrería Carlos Poma">
-    
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://carlos-poma.vercel.app/sobre-nosotros.html">
-    
+    <link rel="canonical" href="https://sastreriacarlospoma.com/sobre-nosotros.html">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+
 <body>
     <!-- Header Component -->
     <div id="header-component"></div>
 
     <main class="main-content">
         <!-- Hero Nosotros -->
-        <section class="hero about-hero" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/sobre-nosotros/hero.jpg') no-repeat center center/cover; background-color: #000;">
+        <section class="hero about-hero"
+            style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/sobre-nosotros/hero.jpg') no-repeat center center/cover; background-color: #000;">
             <div class="hero-content">
                 <h1>El Atelier Carlos Poma:<br><span class="highlight">Maestría en Alta Costura.</span></h1>
-                <p class="hero-subtitle">La filosofía del ajuste perfecto llevada a la perfección. Conozca nuestra visión de lujo, técnica y puntualidad.</p>
+                <p class="hero-subtitle">La filosofía del ajuste perfecto llevada a la perfección. Conozca nuestra
+                    visión de lujo, técnica y puntualidad.</p>
                 <div class="cta-container">
                     <a href="confeccion-bespoke.html" class="btn-gold">
                         <i class="fas fa-scroll"></i> Nuestros Procesos
@@ -53,17 +84,26 @@
 
         <!-- Historia y Visión -->
         <section class="history-section">
-                <h2>Nuestra Historia: La Evolución de la Distinción en Loja</h2>
-                <div class="history-container">
-                    <div class="history-text">
-                        <p>Fundado en el corazón de Loja, el Atelier Carlos Poma nace de una pasión por la sastrería tradicional y el deseo de elevar los estándares de la moda masculina y femenina en el sur del Ecuador. Con más de 15 años de experiencia, nuestro fundador, Carlos Poma, ha perfeccionado el arte del corte y la confección, fusionando técnicas ancestrales con innovaciones contemporáneas.</p>
-                        <p>Loja, conocida como la capital musical y cultural del Ecuador, ha sido nuestra fuente de inspiración. Su rico patrimonio artístico y su exigente clientela han moldeado nuestro compromiso con la excelencia en cada puntada.</p>
-                        <p>Hoy, nos enorgullecemos de ser un referente en sastrería fina, ofreciendo servicios que van desde arreglos rápidos hasta piezas completamente personalizadas, siempre manteniendo nuestro compromiso con la calidad, la puntualidad y la satisfacción del cliente.</p>
-                    </div>
-                    <div class="history-image">
-                        <img src="images/sobre-nosotros/Nuestra Historia.jpg" alt="Nuestra Historia - Carlos Poma Sastrería">
-                    </div>
+            <h2>Nuestra Historia: La Evolución de la Distinción en Loja</h2>
+            <div class="history-container">
+                <div class="history-text">
+                    <p>Fundado en el corazón de Loja, el Atelier Carlos Poma nace de una pasión por la sastrería
+                        tradicional y el deseo de elevar los estándares de la moda masculina y femenina en el sur del
+                        Ecuador. Con más de 15 años de experiencia, nuestro fundador, Carlos Poma, ha perfeccionado el
+                        arte del corte y la confección, fusionando técnicas ancestrales con innovaciones contemporáneas.
+                    </p>
+                    <p>Loja, conocida como la capital musical y cultural del Ecuador, ha sido nuestra fuente de
+                        inspiración. Su rico patrimonio artístico y su exigente clientela han moldeado nuestro
+                        compromiso con la excelencia en cada puntada.</p>
+                    <p>Hoy, nos enorgullecemos de ser un referente en sastrería fina, ofreciendo servicios que van desde
+                        arreglos rápidos hasta piezas completamente personalizadas, siempre manteniendo nuestro
+                        compromiso con la calidad, la puntualidad y la satisfacción del cliente.</p>
                 </div>
+                <div class="history-image">
+                    <img src="images/sobre-nosotros/Nuestra Historia.jpg"
+                        alt="Nuestra Historia - Carlos Poma Sastrería">
+                </div>
+            </div>
             </div>
         </section>
 
@@ -77,21 +117,27 @@
                             <i class="fas fa-award"></i>
                         </div>
                         <h3>Maestría Técnica</h3>
-                        <p>Nuestros sastres cuentan con certificaciones internacionales y más de una década de experiencia en el rubro. Cada año, invertimos en capacitación continua para dominar las últimas técnicas y tendencias en sastrería fina.</p>
+                        <p>Nuestros sastres cuentan con certificaciones internacionales y más de una década de
+                            experiencia en el rubro. Cada año, invertimos en capacitación continua para dominar las
+                            últimas técnicas y tendencias en sastrería fina.</p>
                     </div>
                     <div class="pillar-card">
                         <div class="pillar-icon">
                             <i class="fas fa-clock"></i>
                         </div>
                         <h3>Ética de la Puntualidad</h3>
-                        <p>Entendemos que el tiempo es su activo más valioso. Nuestro compromiso inquebrantable con los plazos de entrega nos ha convertido en el taller de confianza de profesionales y ejecutivos en Loja.</p>
+                        <p>Entendemos que el tiempo es su activo más valioso. Nuestro compromiso inquebrantable con los
+                            plazos de entrega nos ha convertido en el taller de confianza de profesionales y ejecutivos
+                            en Loja.</p>
                     </div>
                     <div class="pillar-card">
                         <div class="pillar-icon">
                             <i class="fas fa-tshirt"></i>
                         </div>
                         <h3>Servicio Bespoke</h3>
-                        <p>No solo creamos prendas, materializamos la visión de nuestros clientes. Desde la selección de telas hasta el último botón, cada detalle se trabaja con precisión y dedicación artesanal.</p>
+                        <p>No solo creamos prendas, materializamos la visión de nuestros clientes. Desde la selección de
+                            telas hasta el último botón, cada detalle se trabaja con precisión y dedicación artesanal.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -101,7 +147,8 @@
         <section class="about-cta">
             <div class="container">
                 <h2>El Lujo de la Confección Personalizada comienza con una conversación</h2>
-                <p>Descubra cómo podemos ayudarle a crear prendas que reflejen su estilo único y se adapten perfectamente a su silueta. Nuestro equipo está listo para asesorarle en cada paso del proceso.</p>
+                <p>Descubra cómo podemos ayudarle a crear prendas que reflejen su estilo único y se adapten
+                    perfectamente a su silueta. Nuestro equipo está listo para asesorarle en cada paso del proceso.</p>
                 <a href="contacto.html" class="btn-gold">Agende su Consulta Personalizada</a>
             </div>
         </section>
@@ -114,10 +161,11 @@
     <script src="js/components.js"></script>
     <script>
         // Cargar componentes
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             loadHeader();
             loadFooter();
         });
     </script>
 </body>
+
 </html>
